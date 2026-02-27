@@ -1,0 +1,80 @@
+import { motion } from "framer-motion";
+import { Home, Calendar, Map, Clock, BookOpen, Info, ImageIcon, Trophy, Building2, Wifi } from "lucide-react";
+import { useState, useEffect } from "react";
+
+export type DesktopApp = "home" | "events" | "map" | "schedule" | "instruction" | "about" | "gallery" | "prize" | "sponsors";
+
+const shelfItems: { id: DesktopApp; icon: typeof Home; label: string }[] = [
+  { id: "home", icon: Home, label: "HOME" },
+  { id: "events", icon: Calendar, label: "EVENTS" },
+  { id: "map", icon: Map, label: "MAP" },
+  { id: "schedule", icon: Clock, label: "SCHEDULE" },
+  { id: "instruction", icon: BookOpen, label: "INSTRUCT" },
+  { id: "about", icon: Info, label: "ABOUT" },
+  { id: "gallery", icon: ImageIcon, label: "GALLERY" },
+  { id: "prize", icon: Trophy, label: "PRIZES" },
+  { id: "sponsors", icon: Building2, label: "SPONSORS" },
+];
+
+interface Props {
+  openApps: DesktopApp[];
+  onOpen: (app: DesktopApp) => void;
+}
+
+const DesktopShelf = ({ openApps, onOpen }: Props) => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="fixed bottom-4 left-0 right-0 z-50 flex items-end justify-center px-4">
+      <motion.div
+        className="flex items-center gap-0.5 px-3 py-2 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10"
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.3, type: "spring", stiffness: 200, damping: 20 }}
+      >
+        {shelfItems.map(({ id, icon: Icon, label }) => {
+          const active = openApps.includes(id);
+          return (
+            <motion.button
+              key={id}
+              onClick={() => onOpen(id)}
+              className="flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl hover:bg-white/10 transition-colors relative"
+              whileHover={{ scale: 1.1, y: -4 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Icon className={`w-4 h-4 ${active ? "text-primary" : "text-muted-foreground"}`} />
+              <span className="text-[6px] font-display tracking-wider text-muted-foreground">{label}</span>
+              {active && (
+                <motion.div
+                  className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-primary"
+                  layoutId={`led-${id}`}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                />
+              )}
+            </motion.button>
+          );
+        })}
+
+        <div className="w-px h-8 bg-white/10 mx-1" />
+
+        <div className="flex flex-col items-end gap-0.5 px-2">
+          <div className="flex items-center gap-1">
+            <Wifi className="w-3 h-3 text-primary/60" />
+            <span className="text-[7px] font-mono text-muted-foreground">MSEC_WIFI</span>
+          </div>
+          <span className="text-[9px] font-display text-primary/80 tracking-wider">
+            {time.toLocaleTimeString("en-US", { hour12: false })}
+          </span>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default DesktopShelf;
