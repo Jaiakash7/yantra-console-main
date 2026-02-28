@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Home, Calendar, Map, Clock, BookOpen, Info, ImageIcon, Trophy, Building2, Wifi } from "lucide-react";
+import { Home, Calendar, Map, Clock, Wifi } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export type DesktopApp = "home" | "events" | "map" | "schedule" | "instruction" | "about" | "gallery" | "prize" | "sponsors";
@@ -9,11 +9,6 @@ const shelfItems: { id: DesktopApp; icon: typeof Home; label: string }[] = [
   { id: "events", icon: Calendar, label: "EVENTS" },
   { id: "map", icon: Map, label: "MAP" },
   { id: "schedule", icon: Clock, label: "SCHEDULE" },
-  { id: "instruction", icon: BookOpen, label: "INSTRUCT" },
-  { id: "about", icon: Info, label: "ABOUT" },
-  { id: "gallery", icon: ImageIcon, label: "GALLERY" },
-  { id: "prize", icon: Trophy, label: "PRIZES" },
-  { id: "sponsors", icon: Building2, label: "SPONSORS" },
 ];
 
 interface Props {
@@ -43,12 +38,12 @@ const DesktopShelf = ({ openApps, onOpen }: Props) => {
             <motion.button
               key={id}
               onClick={() => onOpen(id)}
-              className="flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-xl hover:bg-white/10 transition-colors relative"
+              className="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl hover:bg-white/10 transition-colors relative"
               whileHover={{ scale: 1.1, y: -4 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Icon className={`w-4 h-4 ${active ? "text-primary" : "text-muted-foreground"}`} />
-              <span className="text-[6px] font-display tracking-wider text-muted-foreground">{label}</span>
+              <Icon className={`w-5 h-5 ${active ? "text-primary" : "text-muted-foreground"}`} />
+              <span className="text-[7px] font-display tracking-wider text-muted-foreground">{label}</span>
               {active && (
                 <motion.div
                   className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-primary"

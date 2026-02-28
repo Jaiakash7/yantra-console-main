@@ -1,26 +1,29 @@
 import { motion } from "framer-motion";
 import { BookOpen, Info, ImageIcon, Trophy, Rocket } from "lucide-react";
 import CountdownCard from "@/components/CountdownCard";
+import { type DesktopApp } from "./DesktopShelf";
 
 interface Props {
   onOpenEvents?: () => void;
+  onOpenApp?: (app: DesktopApp) => void;
 }
 
-const gridButtons = [
+const gridButtons: { icon: typeof BookOpen; label: string; id: DesktopApp }[] = [
   { icon: BookOpen, label: "INSTRUCTION", id: "instruction" },
   { icon: Info, label: "ABOUT", id: "about" },
   { icon: ImageIcon, label: "GALLERY", id: "gallery" },
   { icon: Trophy, label: "PRIZE", id: "prize" },
 ];
 
-const DesktopHomeContent = ({ onOpenEvents }: Props) => (
+const DesktopHomeContent = ({ onOpenEvents, onOpenApp }: Props) => (
   <div className="p-6 space-y-6 max-w-lg mx-auto">
     <CountdownCard />
 
     <div className="grid grid-cols-2 gap-4">
-      {gridButtons.map(({ icon: Icon, label }) => (
+      {gridButtons.map(({ icon: Icon, label, id }) => (
         <motion.button
           key={label}
+          onClick={() => onOpenApp?.(id)}
           className="aspect-square rounded-xl border-2 border-border bg-card/50 flex flex-col items-center justify-center gap-3 relative overflow-hidden group"
           whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary))" }}
           whileTap={{ scale: 0.95 }}

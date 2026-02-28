@@ -110,8 +110,12 @@ const LockScreen = ({ onUnlock }: LockScreenProps) => {
         >
           {/* Track fill */}
           <motion.div
-            className="absolute inset-y-0 left-0 gold-gradient opacity-20 rounded-full"
-            style={{ width: useTransform(x, [0, maxDrag], ["0%", "100%"]) }}
+            className="absolute inset-y-0 left-0 rounded-full"
+            style={{
+              width: useTransform(x, [0, maxDrag], ["0%", "100%"]),
+              background: "linear-gradient(90deg, hsl(43 100% 35%), hsl(48 100% 55%))",
+              boxShadow: "0 0 20px hsl(43 100% 50% / 0.6), 0 0 40px hsl(43 100% 50% / 0.3)",
+            }}
           />
 
           {/* Track text */}

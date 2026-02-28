@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const PressureGauge = ({ level = 87 }: { level?: number }) => (
+const BatteryIndicator = ({ level = 87 }: { level?: number }) => (
   <div className="flex items-center gap-1">
     <div className="relative w-6 h-3 border border-primary/60 rounded-sm overflow-hidden">
       <motion.div
@@ -10,7 +10,7 @@ const PressureGauge = ({ level = 87 }: { level?: number }) => (
         transition={{ duration: 1.5, ease: "easeOut" }}
       />
     </div>
-    <span className="text-[8px] text-primary/70 font-display">{level}PSI</span>
+    <span className="text-[8px] text-primary/70 font-display">{level}%</span>
   </div>
 );
 
@@ -33,7 +33,7 @@ const StatusBar = () => {
       <span className="text-[9px] font-display tracking-widest">MSEC_NETWORK</span>
       <div className="flex items-center gap-3">
         <SignalBars />
-        <PressureGauge />
+        <BatteryIndicator />
       </div>
     </div>
   );

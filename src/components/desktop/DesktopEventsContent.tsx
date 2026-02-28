@@ -11,18 +11,18 @@ interface EventSpec {
 }
 
 const techEvents: EventSpec[] = [
-  { title: "CAD WARFARE", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Speed modeling using SolidWorks/CATIA." },
-  { title: "ROBO CLASH", code: "TE-002", duration: "3 HRS", venue: "ARENA", teamSize: "TEAM OF 4", description: "Autonomous line-following robot competition." },
-  { title: "THERMO QUIZ", code: "TE-003", duration: "1 HR", venue: "SEMINAR HALL-B", teamSize: "TEAM OF 2", description: "Rapid-fire thermodynamics quiz." },
-  { title: "ANSYS SIMULATION", code: "TE-004", duration: "4 HRS", venue: "LAB-C3", teamSize: "INDIVIDUAL", description: "FEA simulation challenge using ANSYS." },
-  { title: "DESIGN SPRINT", code: "TE-005", duration: "3 HRS", venue: "WORKSHOP-B2", teamSize: "TEAM OF 3", description: "Concept to 3D printed prototype." },
+  { title: "CAD MODELLING", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Flagship event — precision CAD modeling competition." },
+  { title: "BRAIN SPARKS", code: "TE-002", duration: "1.5 HRS", venue: "SEMINAR HALL-B", teamSize: "TEAM OF 2", description: "Rapid-fire technical quiz across mech domains." },
+  { title: "PAPER PRESENTATION", code: "TE-003", duration: "3 HRS", venue: "AUDITORIUM", teamSize: "TEAM OF 2", description: "Research paper presentation on emerging topics." },
+  { title: "COMPONENT-MESHING", code: "TE-004", duration: "2 HRS", venue: "LAB-C3", teamSize: "TEAM OF 3", description: "Identify, assemble, and mesh components." },
+  { title: "RETRO RACERS", code: "TE-005", duration: "2 HRS", venue: "OPEN GROUND", teamSize: "TEAM OF 4", description: "Design and race vintage mechanical vehicles." },
 ];
 
 const nonTechEvents: EventSpec[] = [
-  { title: "MECH DEBATE", code: "NT-001", duration: "2 HRS", venue: "AUDITORIUM", teamSize: "TEAM OF 2", description: "Debate on mech engineering's future." },
-  { title: "BRIDGE BUILDER", code: "NT-002", duration: "3 HRS", venue: "OPEN GROUND", teamSize: "TEAM OF 4", description: "Popsicle-stick bridge load test." },
-  { title: "PISTON RACE", code: "NT-003", duration: "1 HR", venue: "MAIN TRACK", teamSize: "TEAM OF 3", description: "Relay race with mech obstacles." },
-  { title: "JUNKYARD WARS", code: "NT-004", duration: "2 HRS", venue: "WORKSHOP-A1", teamSize: "TEAM OF 4", description: "Build machines from scrap materials." },
+  { title: "FACT FORGE", code: "NT-001", duration: "1 HR", venue: "SEMINAR HALL-A", teamSize: "INDIVIDUAL", description: "General knowledge and lateral thinking quiz." },
+  { title: "FRAME FLUX", code: "NT-002", duration: "2 HRS", venue: "MEDIA LAB", teamSize: "TEAM OF 3", description: "Short film / reel making competition." },
+  { title: "OTAKU STYLE", code: "NT-003", duration: "2 HRS", venue: "MAIN HALL", teamSize: "INDIVIDUAL", description: "Anime cosplay and trivia showcase." },
+  { title: "RAPID RUMBLE", code: "NT-004", duration: "1.5 HRS", venue: "ARENA", teamSize: "TEAM OF 4", description: "Fast-paced multi-round mini-games." },
 ];
 
 const EventCard = ({ event, index }: { event: EventSpec; index: number }) => (

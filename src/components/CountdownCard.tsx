@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const SYMPOSIUM_DATE = new Date("2026-04-15T09:00:00");
+const SYMPOSIUM_DATE = new Date("2026-03-18T09:00:00");
 
 const SegmentDigit = ({ value, label }: { value: string; label: string }) => (
   <div className="flex flex-col items-center">

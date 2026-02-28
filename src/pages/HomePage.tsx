@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { BookOpen, Info, ImageIcon, Trophy, Rocket, Building2, Clock, Megaphone } from "lucide-react";
+import { motion, PanInfo } from "framer-motion";
+import { BookOpen, Info, ImageIcon, Trophy, Rocket, Phone, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CountdownCard from "@/components/CountdownCard";
 import DynamicIsland from "@/components/DynamicIsland";
@@ -13,11 +13,10 @@ const gridButtons = [
   { icon: Trophy, label: "PRIZE", path: "/prize" },
 ];
 
-const announcements = [
-  { time: "14:32", msg: "Workshop registrations closing in 2 hours" },
-  { time: "13:15", msg: "CAD Warfare venue changed to LAB-C4" },
-  { time: "11:00", msg: "Inauguration ceremony completed successfully" },
-  { time: "09:45", msg: "All systems operational — event day initialized" },
+const contacts = [
+  { name: "SYED NAYEM", number: "9042818580", status: "ONLINE" },
+  { name: "SENTHIL", number: "9080191348", status: "ONLINE" },
+  { name: "CHIDAMBARAM", number: "9751894475", status: "ONLINE" },
 ];
 
 const HomePage = () => {
@@ -78,7 +77,6 @@ const HomePage = () => {
                   <span className="text-[8px] font-display tracking-[0.2em] text-muted-foreground group-hover:text-primary transition-colors">
                     {label}
                   </span>
-                  {/* Corner rivet */}
                   <div className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-muted-foreground/20" />
                   <div className="absolute bottom-2 left-2 w-1.5 h-1.5 rounded-full bg-muted-foreground/20" />
                 </motion.button>
@@ -101,55 +99,61 @@ const HomePage = () => {
             </motion.button>
           </div>
 
-          {/* PAGE 2 — Widgets */}
+          {/* PAGE 2 — Sponsor Datapad + Comms Array */}
           <div className="w-full flex-shrink-0 px-4 pb-2 space-y-4 overflow-y-auto scrollbar-hide">
-            {/* Schedule Widget */}
-            <motion.button
-              onClick={() => navigate("/schedule")}
-              className="w-full p-4 rounded-xl border border-border/50 bg-card/50 text-left"
-              whileTap={{ scale: 0.97 }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Clock className="w-4 h-4 text-primary" />
-                <span className="font-display text-[10px] tracking-widest text-primary">SCHEDULE</span>
+            {/* Title Sponsor Datapad */}
+            <div className="rounded-xl border-2 border-primary/30 bg-gradient-to-br from-card/80 via-muted/20 to-card/80 p-6 relative overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.03]" style={{
+                backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(var(--primary)) 10px, hsl(var(--primary)) 11px)`
+              }} />
+              <div className="flex items-center gap-2 mb-4">
+                <Shield className="w-4 h-4 text-primary" />
+                <span className="font-display text-[9px] tracking-[0.3em] text-primary">TITLE SPONSOR // DATAPAD</span>
               </div>
-              <div className="space-y-2">
-                {["09:00 — INAUGURATION", "10:00 — TECH EVENTS", "14:00 — NON-TECH"].map((t, i) => (
-                  <div key={i} className="text-[9px] font-mono text-muted-foreground">{t}</div>
-                ))}
+              <div className="flex flex-col items-center justify-center py-8 border border-border/30 rounded-lg bg-muted/10">
+                <div className="w-20 h-20 rounded-xl border-2 border-dashed border-primary/30 flex items-center justify-center mb-4">
+                  <span className="text-[10px] font-mono text-muted-foreground">LOGO</span>
+                </div>
+                <span className="font-display text-sm tracking-[0.3em] text-primary font-bold mb-1">SPONSOR NAME</span>
+                <span className="text-[8px] font-mono text-muted-foreground">PLATINUM PARTNER // YANTRA 2K26</span>
               </div>
-              <span className="text-[7px] font-display tracking-widest text-primary/60 mt-2 block">TAP TO VIEW FULL →</span>
-            </motion.button>
-
-            {/* Sponsors Widget */}
-            <div className="p-4 rounded-xl border border-border/50 bg-card/50">
-              <div className="flex items-center gap-2 mb-3">
-                <Building2 className="w-4 h-4 text-primary" />
-                <span className="font-display text-[10px] tracking-widest text-primary">SPONSORS</span>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {["TATA STEEL", "BOSCH", "SKF", "SIEMENS", "ABB", "L&T"].map((s, i) => (
-                  <div key={i} className="py-2 rounded-lg border border-border/30 bg-muted/20 flex items-center justify-center">
-                    <span className="text-[7px] font-mono text-muted-foreground">{s}</span>
-                  </div>
-                ))}
+              <div className="mt-3 flex justify-between text-[7px] font-mono text-muted-foreground/50">
+                <span>CLEARANCE: LEVEL-5</span>
+                <span>STATUS: CONFIRMED</span>
               </div>
             </div>
 
-            {/* Live System Announcements */}
-            <div className="p-4 rounded-xl border border-border/50 bg-card/50">
-              <div className="flex items-center gap-2 mb-3">
-                <Megaphone className="w-4 h-4 text-orange-400" />
-                <span className="font-display text-[10px] tracking-widest text-orange-400">LIVE SYSTEM LOG</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse ml-auto" />
+            {/* Comms Array — Emergency Contacts */}
+            <div className="rounded-xl border border-border/50 bg-card/50 p-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Phone className="w-4 h-4 text-primary" />
+                <span className="font-display text-[9px] tracking-[0.3em] text-primary">COMMS ARRAY</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse ml-auto" />
               </div>
               <div className="space-y-2">
-                {announcements.map((a, i) => (
-                  <div key={i} className="flex gap-2 items-start">
-                    <span className="text-[8px] font-mono text-muted-foreground/60 w-10 flex-shrink-0">{a.time}</span>
-                    <span className="text-[9px] font-body text-muted-foreground">{a.msg}</span>
-                  </div>
+                {contacts.map((c, i) => (
+                  <motion.a
+                    key={i}
+                    href={`tel:${c.number}`}
+                    className="flex items-center gap-3 p-3 rounded-lg border border-border/30 bg-muted/10 hover:border-primary/30 transition-colors group"
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="w-8 h-8 rounded-full border border-border/50 bg-muted/30 flex items-center justify-center">
+                      <Phone className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="font-display text-[10px] tracking-widest text-foreground block">{c.name}</span>
+                      <span className="text-[9px] font-mono text-muted-foreground">{c.number}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                      <span className="text-[7px] font-mono text-green-500/70">{c.status}</span>
+                    </div>
+                  </motion.a>
                 ))}
+              </div>
+              <div className="mt-3 text-[7px] font-mono text-muted-foreground/40 text-center">
+                EMERGENCY SWITCHBOARD // YANTRA OPS
               </div>
             </div>
           </div>

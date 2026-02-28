@@ -13,18 +13,18 @@ interface EventSpec {
 }
 
 const techEvents: EventSpec[] = [
-  { title: "CAD WARFARE", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Speed modeling competition using SolidWorks/CATIA. Precision and speed tested under pressure." },
-  { title: "ROBO CLASH", code: "TE-002", duration: "3 HRS", venue: "ARENA", teamSize: "TEAM OF 4", description: "Autonomous line-following robot competition through a mechanical obstacle course." },
-  { title: "THERMO QUIZ", code: "TE-003", duration: "1 HR", venue: "SEMINAR HALL-B", teamSize: "TEAM OF 2", description: "Rapid-fire thermodynamics & heat transfer quiz with real-world problem sets." },
-  { title: "ANSYS SIMULATION", code: "TE-004", duration: "4 HRS", venue: "LAB-C3", teamSize: "INDIVIDUAL", description: "Advanced FEA simulation challenge using ANSYS Workbench. Structural analysis under load." },
-  { title: "DESIGN SPRINT", code: "TE-005", duration: "3 HRS", venue: "WORKSHOP-B2", teamSize: "TEAM OF 3", description: "Rapid prototyping challenge — concept to 3D printed prototype in 3 hours." },
+  { title: "CAD MODELLING", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Flagship event — precision CAD modeling competition using SolidWorks/CATIA under pressure." },
+  { title: "BRAIN SPARKS", code: "TE-002", duration: "1.5 HRS", venue: "SEMINAR HALL-B", teamSize: "TEAM OF 2", description: "Rapid-fire technical quiz spanning core mechanical engineering domains." },
+  { title: "PAPER PRESENTATION", code: "TE-003", duration: "3 HRS", venue: "AUDITORIUM", teamSize: "TEAM OF 2", description: "Present your research paper on emerging mechanical engineering topics." },
+  { title: "COMPONENT-MESHING", code: "TE-004", duration: "2 HRS", venue: "LAB-C3", teamSize: "TEAM OF 3", description: "Identify, assemble, and mesh mechanical components against the clock." },
+  { title: "RETRO RACERS", code: "TE-005", duration: "2 HRS", venue: "OPEN GROUND", teamSize: "TEAM OF 4", description: "Design and race vintage-style mechanical vehicles on an obstacle course." },
 ];
 
 const nonTechEvents: EventSpec[] = [
-  { title: "MECH DEBATE", code: "NT-001", duration: "2 HRS", venue: "AUDITORIUM", teamSize: "TEAM OF 2", description: "Debate on the future of mechanical engineering in an AI-driven world." },
-  { title: "BRIDGE BUILDER", code: "NT-002", duration: "3 HRS", venue: "OPEN GROUND", teamSize: "TEAM OF 4", description: "Build the strongest popsicle-stick bridge. Destructive load test to failure." },
-  { title: "PISTON RACE", code: "NT-003", duration: "1 HR", venue: "MAIN TRACK", teamSize: "TEAM OF 3", description: "Relay race with mechanical-themed obstacle challenges and timed puzzles." },
-  { title: "JUNKYARD WARS", code: "NT-004", duration: "2 HRS", venue: "WORKSHOP-A1", teamSize: "TEAM OF 4", description: "Build a functional machine from scrap materials. Creativity meets engineering." },
+  { title: "FACT FORGE", code: "NT-001", duration: "1 HR", venue: "SEMINAR HALL-A", teamSize: "INDIVIDUAL", description: "Forge facts from fiction — a quiz testing general knowledge and lateral thinking." },
+  { title: "FRAME FLUX", code: "NT-002", duration: "2 HRS", venue: "MEDIA LAB", teamSize: "TEAM OF 3", description: "Short film / reel making competition with a surprise theme reveal." },
+  { title: "OTAKU STYLE", code: "NT-003", duration: "2 HRS", venue: "MAIN HALL", teamSize: "INDIVIDUAL", description: "Anime-inspired cosplay and trivia — showcase your otaku spirit." },
+  { title: "RAPID RUMBLE", code: "NT-004", duration: "1.5 HRS", venue: "ARENA", teamSize: "TEAM OF 4", description: "Fast-paced multi-round mini-games combining speed, strategy, and teamwork." },
 ];
 
 const SpecCard = ({ event, index }: { event: EventSpec; index: number }) => (
@@ -87,7 +87,6 @@ const EventsPage = () => {
         </div>
 
         <div className="p-4 space-y-6">
-          {/* Technical Events */}
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Wrench className="w-3.5 h-3.5 text-primary" />
@@ -100,7 +99,6 @@ const EventsPage = () => {
             </div>
           </div>
 
-          {/* Non-Technical Events */}
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Gamepad2 className="w-3.5 h-3.5 text-orange-400" />
