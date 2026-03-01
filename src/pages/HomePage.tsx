@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CountdownCard from "@/components/CountdownCard";
 import DynamicIsland from "@/components/DynamicIsland";
 import BottomDock from "@/components/BottomDock";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const gridButtons = [
   { icon: BookOpen, label: "INSTRUCTION", path: "/instruction" },
   { icon: Info, label: "ABOUT", path: "/about" },
