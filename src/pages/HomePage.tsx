@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CountdownCard from "@/components/CountdownCard";
 import DynamicIsland from "@/components/DynamicIsland";
 import BottomDock from "@/components/BottomDock";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+
 const gridButtons = [
   { icon: BookOpen, label: "INSTRUCTION", path: "/instruction" },
   { icon: Info, label: "ABOUT", path: "/about" },
@@ -25,9 +25,14 @@ const HomePage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleDragEnd = (_: any, info: PanInfo) => {
-    const threshold = 50;
-    if (info.offset.x < -threshold && page === 0) setPage(1);
-    else if (info.offset.x > threshold && page === 1) setPage(0);
+    const threshold = 24;
+    const flickVelocity = 220;
+
+    if ((info.offset.x < -threshold || info.velocity.x < -flickVelocity) && page === 0) {
+      setPage(1);
+    } else if ((info.offset.x > threshold || info.velocity.x > flickVelocity) && page === 1) {
+      setPage(0);
+    }
   };
 
   return (
@@ -52,13 +57,14 @@ const HomePage = () => {
           animate={{ x: page === 0 ? "0%" : "-100%" }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.1}
+          dragConstraints={{ left: -100, right: 0 }}
+          dragElastic={0.05}
+          dragMomentum={false}
           onDragEnd={handleDragEnd}
           style={{ touchAction: "pan-y" }}
         >
           {/* PAGE 1 — Main Home */}
-          <div className="w-full flex-shrink-0 px-4 pb-2 space-y-4 overflow-y-auto scrollbar-hide">
+          <div className="w-full flex-shrink-0 px-4 pb-[80px] space-y-4 overflow-y-auto scrollbar-hide">
             <CountdownCard />
 
             {/* 2x2 Mechanical Switch Grid */}
@@ -101,7 +107,7 @@ const HomePage = () => {
           </div>
 
           {/* PAGE 2 — Schedule + Sponsor + Comms */}
-          <div className="w-full flex-shrink-0 px-4 pb-2 space-y-4 overflow-y-auto scrollbar-hide">
+          <div className="w-full flex-shrink-0 px-4 pb-[80px] space-y-4 overflow-y-auto scrollbar-hide">
             {/* Quick Schedule Widget */}
             <div className="rounded-xl border border-border/50 bg-card/50 p-4">
               <div className="flex items-center gap-2 mb-3">

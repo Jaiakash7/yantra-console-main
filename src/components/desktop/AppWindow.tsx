@@ -16,6 +16,7 @@ interface Props {
 const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition, width, height }: Props) => {
   const constraintsRef = useRef<HTMLDivElement>(null);
   const [minimized, setMinimized] = useState(false);
+  const isMapWindow = title.includes("MAP");
 
   return (
     <>
@@ -33,7 +34,10 @@ const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition,
         dragConstraints={constraintsRef}
         onPointerDown={onFocus}
       >
-        <div className="max-w-[85vw] rounded-xl overflow-hidden border border-border/50 bg-card/95 backdrop-blur-md shadow-2xl" style={{ width: width ? `${width}px` : "700px" }}>
+        <div
+          className={`${isMapWindow ? "w-[800px] h-[600px]" : "max-w-[85vw]"} rounded-xl overflow-hidden border border-border/50 bg-card/95 backdrop-blur-md shadow-2xl`}
+          style={isMapWindow ? undefined : { width: width ? `${width}px` : "700px" }}
+        >
           {/* Title bar */}
           <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/50 cursor-grab active:cursor-grabbing">
             <span className="font-display text-[10px] tracking-[0.2em] text-primary/80">{title}</span>
@@ -54,7 +58,10 @@ const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition,
           </div>
           {/* Content */}
           {!minimized && (
-            <div className="overflow-y-auto scrollbar-hide" style={{ maxHeight: height ? `${height - 40}px` : "65vh" }}>
+            <div
+              className={isMapWindow ? "overflow-hidden h-[560px]" : "overflow-y-auto scrollbar-hide"}
+              style={isMapWindow ? undefined : { maxHeight: height ? `${height - 40}px` : "65vh" }}
+            >
               {children}
             </div>
           )}

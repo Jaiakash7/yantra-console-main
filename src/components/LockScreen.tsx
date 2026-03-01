@@ -15,6 +15,7 @@ const LockScreen = ({ onUnlock }: LockScreenProps) => {
   const handleSize = 50;
   const maxDrag = trackWidth - handleSize;
 
+  const fillWidth = useTransform(x, [0, maxDrag], ["0%", "100%"]);
   const progress = useTransform(x, [0, maxDrag], [0, 1]);
   const textOpacity = useTransform(x, [0, maxDrag * 0.5, maxDrag], [0.6, 0.3, 0]);
   const statusOpacity = useTransform(x, [maxDrag * 0.5, maxDrag * 0.8, maxDrag], [0, 0.5, 1]);
@@ -110,12 +111,8 @@ const LockScreen = ({ onUnlock }: LockScreenProps) => {
         >
           {/* Track fill */}
           <motion.div
-            className="absolute inset-y-0 left-0 rounded-full"
-            style={{
-              width: useTransform(x, [0, maxDrag], ["0%", "100%"]),
-              background: "linear-gradient(90deg, hsl(43 100% 35%), hsl(48 100% 55%))",
-              boxShadow: "0 0 15px rgba(255,215,0,0.8), 0 0 30px rgba(255,215,0,0.4)",
-            }}
+            className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-yellow-600 to-yellow-400 shadow-[0_0_20px_rgba(255,215,0,0.9)]"
+            style={{ width: fillWidth }}
           />
 
           {/* Track text */}

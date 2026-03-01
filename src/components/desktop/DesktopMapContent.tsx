@@ -11,7 +11,7 @@ const DesktopMapContent = () => (
     <div className="flex-1 relative">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8!2d80.221!3d13.0285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526787b6a60457%3A0xbcfae41bdd520e15!2sMeenakshi%20Sundararajan%20Engineering%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-        className="w-full h-full border-0"
+        className="w-full h-full border-none"
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
