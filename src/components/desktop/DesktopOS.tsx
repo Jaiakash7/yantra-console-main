@@ -4,7 +4,7 @@ import { BookOpen, Info, ImageIcon, Trophy, Building2 } from "lucide-react";
 import DesktopShelf, { type DesktopApp } from "./DesktopShelf";
 import AppWindow from "./AppWindow";
 import PrizePoolWidget from "./PrizePoolWidget";
-import SponsorsWidget from "./SponsorsWidget";
+import CommsWidget from "./CommsWidget";
 import yantraLogo from "@/assets/yantra-logo.jpeg";
 
 import DesktopHomeContent from "./DesktopHomeContent";
@@ -20,7 +20,7 @@ import SponsorsContent from "./SponsorsContent";
 const appMeta: Record<DesktopApp, { title: string; pos: { x: number; y: number }; width?: number; height?: number }> = {
   home: { title: "YANTRA CONSOLE // HOME", pos: { x: 300, y: 80 }, width: 520, height: 560 },
   events: { title: "EVENT MODULES // INDEX", pos: { x: 150, y: 60 }, width: 800, height: 520 },
-  map: { title: "FACILITY MAP // RADAR", pos: { x: 200, y: 70 }, width: 800, height: 500 },
+  map: { title: "FACILITY MAP // RADAR", pos: { x: 200, y: 70 }, width: 800, height: 600 },
   schedule: { title: "SYSTEM SCHEDULE // TIMELINE", pos: { x: 250, y: 90 }, width: 600, height: 480 },
   instruction: { title: "INSTRUCTIONS // PROTOCOL", pos: { x: 350, y: 100 }, width: 500, height: 460 },
   about: { title: "ABOUT // MANIFEST", pos: { x: 320, y: 80 }, width: 500, height: 520 },
@@ -111,7 +111,7 @@ const DesktopOS = () => {
       {/* Desktop widgets */}
       <div className="absolute top-6 right-6 space-y-4 z-30">
         <PrizePoolWidget />
-        <SponsorsWidget />
+        <CommsWidget />
       </div>
 
       {/* App windows */}

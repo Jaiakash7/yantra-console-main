@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, PanInfo } from "framer-motion";
-import { BookOpen, Info, ImageIcon, Trophy, Rocket, Phone, Shield } from "lucide-react";
+import { BookOpen, Info, ImageIcon, Trophy, Rocket, Phone, Shield, Clock, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CountdownCard from "@/components/CountdownCard";
 import DynamicIsland from "@/components/DynamicIsland";
@@ -16,7 +16,7 @@ const gridButtons = [
 const contacts = [
   { name: "SYED NAYEM", number: "9042818580", status: "ONLINE" },
   { name: "SENTHIL", number: "9080191348", status: "ONLINE" },
-  { name: "CHIDAMBARAM", number: "9751894475", status: "ONLINE" },
+  { name: "MR. CHIDAMBARAM", number: "9751894475", status: "ONLINE" },
 ];
 
 const HomePage = () => {
@@ -53,8 +53,9 @@ const HomePage = () => {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.2}
+          dragElastic={0.1}
           onDragEnd={handleDragEnd}
+          style={{ touchAction: "pan-y" }}
         >
           {/* PAGE 1 — Main Home */}
           <div className="w-full flex-shrink-0 px-4 pb-2 space-y-4 overflow-y-auto scrollbar-hide">
@@ -99,8 +100,36 @@ const HomePage = () => {
             </motion.button>
           </div>
 
-          {/* PAGE 2 — Sponsor Datapad + Comms Array */}
+          {/* PAGE 2 — Schedule + Sponsor + Comms */}
           <div className="w-full flex-shrink-0 px-4 pb-2 space-y-4 overflow-y-auto scrollbar-hide">
+            {/* Quick Schedule Widget */}
+            <div className="rounded-xl border border-border/50 bg-card/50 p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <Clock className="w-4 h-4 text-primary" />
+                <span className="font-display text-[9px] tracking-[0.3em] text-primary">QUICK SCHEDULE</span>
+              </div>
+              <div className="space-y-2">
+                {[
+                  { time: "09:00", label: "INAUGURATION" },
+                  { time: "10:00", label: "TECH EVENTS" },
+                  { time: "14:00", label: "NON-TECH EVENTS" },
+                ].map((item) => (
+                  <div key={item.time} className="flex items-center gap-3 px-3 py-2 rounded-lg border border-border/20 bg-muted/10">
+                    <span className="font-mono text-[11px] text-primary font-bold">{item.time}</span>
+                    <span className="font-display text-[9px] tracking-widest text-muted-foreground">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+              <motion.button
+                onClick={() => navigate("/schedule")}
+                className="mt-3 w-full flex items-center justify-center gap-1 text-[9px] font-display tracking-widest text-primary/70 hover:text-primary transition-colors"
+                whileTap={{ scale: 0.97 }}
+              >
+                TAP TO VIEW FULL
+                <ChevronRight className="w-3 h-3" />
+              </motion.button>
+            </div>
+
             {/* Title Sponsor Datapad */}
             <div className="rounded-xl border-2 border-primary/30 bg-gradient-to-br from-card/80 via-muted/20 to-card/80 p-6 relative overflow-hidden">
               <div className="absolute inset-0 opacity-[0.03]" style={{

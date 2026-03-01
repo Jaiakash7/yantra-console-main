@@ -114,7 +114,7 @@ const LockScreen = ({ onUnlock }: LockScreenProps) => {
             style={{
               width: useTransform(x, [0, maxDrag], ["0%", "100%"]),
               background: "linear-gradient(90deg, hsl(43 100% 35%), hsl(48 100% 55%))",
-              boxShadow: "0 0 20px hsl(43 100% 50% / 0.6), 0 0 40px hsl(43 100% 50% / 0.3)",
+              boxShadow: "0 0 15px rgba(255,215,0,0.8), 0 0 30px rgba(255,215,0,0.4)",
             }}
           />
 

@@ -1,59 +1,42 @@
 
 
-## Plan: Update Data, Fix UI Issues, Restructure Desktop
+## Plan: Refinements — Schedule Widget, Swipe Physics, Desktop Comms, Map Fix
 
-### Changes Overview
+Comparing current code to requirements, most features are already implemented. This plan addresses the remaining gaps.
 
-**1. Fix countdown date → March 18, 2026 09:00:00**
-- `CountdownCard.tsx` line 4: change `2026-04-15T09:00:00` → `2026-03-18T09:00:00`
+---
 
-**2. Fix StatusBar — remove "PSI", show battery %**
-- `StatusBar.tsx`: Replace `PressureGauge` with a simple battery percentage display (e.g., "87%"). Remove "PSI" text entirely.
+### Changes
 
-**3. Update event names in both mobile and desktop**
-- `EventsPage.tsx`: Replace current tech events with: CAD Modelling (Flagship), Brain Sparks, Paper Presentation, Component-Meshing, Retro Racers. Replace non-tech with: Fact Forge, Frame Flux, Otaku Style, Rapid Rumble.
-- `DesktopEventsContent.tsx`: Same event name updates.
+**1. Mobile HomePage Page 2 — Add Quick Schedule widget at top**
+- Insert a "Quick Schedule" preview widget above the Sponsor Datapad showing: 09:00 Inauguration, 10:00 Tech Events, 14:00 Non-Tech Events
+- Include a "Tap to view full →" link navigating to `/schedule`
 
-**4. Mobile Page 2 — Replace content with Title Sponsor Datapad + Comms Array**
-- `HomePage.tsx` Page 2: Remove Schedule widget, Sponsors grid, and Announcements log. Replace with:
-  - **Title Sponsor Datapad**: Large premium metallic placard for a single main sponsor placeholder.
-  - **Comms Array**: Emergency contacts styled as mechanical switchboard — Syed Nayem: 9042818580, Senthil: 9080191348, Chidambaram: 9751894475.
+**2. Mobile swipe physics fix**
+- `HomePage.tsx`: Change `dragElastic={0.2}` → `dragElastic={0.1}`
+- Add `style={{ touchAction: "pan-y" }}` to the drag container to prevent multi-touch bugs
 
-**5. Mobile Map → Full-screen dark modal with Google Maps iframe + back arrow**
-- `MapPage.tsx`: Replace SVG blueprint with Google Maps iframe (MSEC). Add `ArrowLeft` back button in header. Remove BottomDock from this page (full-screen modal style).
+**3. Contact name fix**
+- Change `"CHIDAMBARAM"` → `"MR. CHIDAMBARAM"` in both `HomePage.tsx` contacts array
 
-**6. Mobile Schedule → Add back arrow**
-- `SchedulePage.tsx`: Add `ArrowLeft` back button header, similar to EventsPage.
+**4. LockScreen — intensify glow**
+- Update track fill `boxShadow` to `0 0 15px rgba(255,215,0,0.8), 0 0 30px rgba(255,215,0,0.4)` for a more intense glow
 
-**7. Mobile PhoneFrame — fix layout so dock is always visible**
-- `PhoneFrame.tsx`: Ensure container uses `flex flex-col` properly so footer/dock never scroll off.
+**5. PhoneFrame — remove dead space**
+- Add `pt-0 mt-0` to the outer wrapper, reduce notch padding
 
-**8. Mobile LockScreen — gold gradient track follows gear handle**
-- `LockScreen.tsx`: Change the track fill from `gold-gradient opacity-20` to an intense `from-yellow-600 to-yellow-400` gradient with glow shadow that dynamically follows the drag position.
+**6. Desktop — Replace SponsorsWidget with CommsArray widget**
+- Create `src/components/desktop/CommsWidget.tsx` — a compact contacts HUD showing the 3 emergency contacts
+- In `DesktopOS.tsx`: Replace `<SponsorsWidget />` with `<CommsWidget />` in the right-side widgets area
 
-**9. Desktop Shelf → 4 icons only (Home, Events, Map, Schedule)**
-- `DesktopShelf.tsx`: Remove instruction, about, gallery, prize, sponsors from shelf. Keep only 4.
-- Update `DesktopApp` type accordingly — but keep the removed apps as valid types for desktop shortcuts.
-
-**10. Desktop Shortcuts — left-side OS-style icons**
-- `DesktopOS.tsx`: Add a left-side column of desktop shortcut icons for Instruction, About, Gallery, Prizes, Sponsors. Clicking opens their respective windows.
-
-**11. Desktop Home window grid buttons → wired to open windows**
-- `DesktopHomeContent.tsx`: Accept an `onOpenApp` callback. Wire each grid button to open its respective desktop window (instruction, about, gallery, prize).
-
-**12. Desktop Map window → larger default (800x500)**
-- `DesktopOS.tsx` appMeta: Update map width to 800, height to 500.
+**7. Desktop Map window — increase to 800x600**
+- `DesktopOS.tsx` appMeta: Change map height from 500 → 600
+- `AppWindow.tsx`: Ensure the content div uses the full height (set `height` style on content area to `height - 40px`)
 
 ### Files Modified
-- `src/components/CountdownCard.tsx` — date fix
-- `src/components/StatusBar.tsx` — remove PSI, show battery %
-- `src/pages/EventsPage.tsx` — new event names
-- `src/components/desktop/DesktopEventsContent.tsx` — new event names
-- `src/pages/HomePage.tsx` — Page 2 content (sponsor datapad + comms array)
-- `src/pages/MapPage.tsx` — Google Maps iframe modal
-- `src/pages/SchedulePage.tsx` — add back arrow
-- `src/components/LockScreen.tsx` — gold gradient track
-- `src/components/desktop/DesktopShelf.tsx` — 4 icons only
-- `src/components/desktop/DesktopOS.tsx` — desktop shortcuts on left, map size, pass onOpenApp
-- `src/components/desktop/DesktopHomeContent.tsx` — wire grid buttons to open windows
+- `src/pages/HomePage.tsx` — Quick Schedule widget, dragElastic, touch-action, contact name
+- `src/components/LockScreen.tsx` — intensify glow shadow
+- `src/components/PhoneFrame.tsx` — remove dead space
+- `src/components/desktop/DesktopOS.tsx` — swap SponsorsWidget for CommsWidget, map height 600
+- `src/components/desktop/CommsWidget.tsx` — new file
 
