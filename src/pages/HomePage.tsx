@@ -53,12 +53,13 @@ const HomePage = () => {
       {/* Swipeable area */}
       <div className="flex-1 overflow-hidden relative" ref={containerRef}>
         <motion.div
-          className="flex h-full"
+          className="flex h-full w-full"
           animate={{ x: page === 0 ? "0%" : "-100%" }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           drag="x"
-          dragConstraints={{ left: -100, right: 0 }}
-          dragElastic={0.05}
+          dragDirectionLock={true}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
           dragMomentum={false}
           onDragEnd={handleDragEnd}
           style={{ touchAction: "pan-y" }}
