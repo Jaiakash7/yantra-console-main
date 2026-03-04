@@ -25,7 +25,7 @@ const DesktopShelf = ({ openApps, onOpen }: Props) => {
   }, []);
 
   return (
-    <div className="fixed bottom-4 left-0 right-0 z-50 flex items-end justify-center px-4">
+    <div className="fixed bottom-4 left-0 right-0 z-50 flex items-end justify-center px-8">
       <motion.div
         className="flex items-center gap-0.5 px-3 py-2 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10"
         initial={{ y: 80, opacity: 0 }}
@@ -42,7 +42,7 @@ const DesktopShelf = ({ openApps, onOpen }: Props) => {
               whileHover={{ scale: 1.1, y: -4 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Icon className={`w-5 h-5 ${active ? "text-primary" : "text-muted-foreground"}`} />
+              <Icon className={`w-7 h-7 ${active ? "text-primary" : "text-muted-foreground"}`} />
               <span className="text-[7px] font-display tracking-wider text-muted-foreground">{label}</span>
               {active && (
                 <motion.div

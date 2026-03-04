@@ -7,6 +7,10 @@ import PrizePoolWidget from "./PrizePoolWidget";
 import CommsWidget from "./CommsWidget";
 import yantraLogo from "@/assets/yantra-logo.jpeg";
 
+// 1. IMPORT YOUR VIDEO HERE
+// Make sure you have a file named cosmic-bg.mp4 in your assets folder!
+import desktopVideo from "@/assets/bg.mp4";
+
 import DesktopHomeContent from "./DesktopHomeContent";
 import DesktopEventsContent from "./DesktopEventsContent";
 import DesktopMapContent from "./DesktopMapContent";
@@ -41,9 +45,24 @@ const DesktopOS = () => {
   const [openApps, setOpenApps] = useState<DesktopApp[]>(["home"]);
   const [focusOrder, setFocusOrder] = useState<DesktopApp[]>(["home"]);
 
+  // STRICT 3-WINDOW LIMIT LOGIC APPLIED HERE
   const handleOpen = useCallback((app: DesktopApp) => {
-    setOpenApps((prev) => (prev.includes(app) ? prev : [...prev, app]));
-    setFocusOrder((prev) => [...prev.filter((a) => a !== app), app]);
+    setOpenApps((prev) => {
+      if (prev.includes(app)) return prev;
+      const newApps = [...prev, app];
+      if (newApps.length > 3) {
+        return newApps.slice(newApps.length - 3);
+      }
+      return newApps;
+    });
+
+    setFocusOrder((prev) => {
+      const newFocus = [...prev.filter((a) => a !== app), app];
+      if (newFocus.length > 3) {
+        return newFocus.slice(newFocus.length - 3);
+      }
+      return newFocus;
+    });
   }, []);
 
   const handleClose = useCallback((app: DesktopApp) => {
@@ -73,20 +92,23 @@ const DesktopOS = () => {
 
   return (
     <div className="fixed inset-0 bg-background overflow-hidden">
-      {/* Blueprint wallpaper */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(hsl(210 60% 50% / 0.08) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(210 60% 50% / 0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <img src={yantraLogo} alt="" className="w-64 h-64 object-cover rounded-full opacity-[0.04]" />
+      
+      {/* 2. VIDEO BACKGROUND SYSTEM */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={desktopVideo} type="video/mp4" />
+        </video>
+        {/* Dark overlay to keep text readable */}
+       
       </div>
+
+    
 
       {/* Desktop shortcuts — left side */}
       <div className="absolute top-6 left-6 flex flex-col gap-4 z-30">
@@ -101,7 +123,8 @@ const DesktopOS = () => {
             <div className="w-12 h-12 rounded-xl border border-border/50 bg-white/5 backdrop-blur-sm flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors">
               <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
-            <span className="text-[8px] font-display tracking-wider text-muted-foreground group-hover:text-primary transition-colors text-center">
+            {/* Added drop shadow to icon text so it pops over the video */}
+            <span className="text-[8px] font-display tracking-wider text-muted-foreground group-hover:text-primary transition-colors text-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
               {label}
             </span>
           </motion.button>
@@ -134,8 +157,11 @@ const DesktopOS = () => {
 
       <DesktopShelf openApps={openApps} onOpen={handleOpen} />
 
-      <div className="fixed bottom-0 left-4 text-[7px] font-mono text-muted-foreground/30 pb-1">
-        PROPERTY OF MEENAKSHI SUNDARARAJAN ENGG COLLEGE // DEPT. OF MECH.
+      {/* NEW HIGH-VISIBILITY FOOTER */}
+      <div className="fixed bottom-0 left-4 pb-2 z-50 pointer-events-none">
+        <p className="text-xs text-primary/80 font-mono tracking-widest uppercase font-semibold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+          PROPERTY OF MEENAKSHI SUNDARARAJAN ENGG COLLEGE // DEPT. OF MECH.
+        </p>
       </div>
     </div>
   );

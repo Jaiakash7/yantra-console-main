@@ -1,73 +1,146 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Clock, MapPin, Users, Wrench, Gamepad2 } from "lucide-react";
+import { icons } from "lucide-react";
+import { Wrench, Gamepad2, ArrowLeft, Clock, MapPin, Users, Phone } from "lucide-react";
+import { eventsData, techEvents, nonTechEvents, contacts, prizeMap, type EventData } from "@/data/eventsData";
 
-interface EventSpec {
-  title: string;
-  code: string;
-  duration: string;
-  venue: string;
-  teamSize: string;
-  description: string;
-}
+const DesktopEventsContent = () => {
+  const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
 
-const techEvents: EventSpec[] = [
-  { title: "CAD MODELLING", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Flagship event — precision CAD modeling competition." },
-  { title: "BRAIN SPARKS", code: "TE-002", duration: "1.5 HRS", venue: "SEMINAR HALL-B", teamSize: "TEAM OF 2", description: "Rapid-fire technical quiz across mech domains." },
-  { title: "PAPER PRESENTATION", code: "TE-003", duration: "3 HRS", venue: "AUDITORIUM", teamSize: "TEAM OF 2", description: "Research paper presentation on emerging topics." },
-  { title: "COMPONENT-MESHING", code: "TE-004", duration: "2 HRS", venue: "LAB-C3", teamSize: "TEAM OF 3", description: "Identify, assemble, and mesh components." },
-  { title: "RETRO RACERS", code: "TE-005", duration: "2 HRS", venue: "OPEN GROUND", teamSize: "TEAM OF 4", description: "Design and race vintage mechanical vehicles." },
-];
+  if (selectedEvent) {
+    const LucideIcon = icons[selectedEvent.icon as keyof typeof icons];
+    const prizes = selectedEvent.type === "technical" && selectedEvent.category !== "none"
+      ? prizeMap[selectedEvent.category]
+      : null;
 
-const nonTechEvents: EventSpec[] = [
-  { title: "FACT FORGE", code: "NT-001", duration: "1 HR", venue: "SEMINAR HALL-A", teamSize: "INDIVIDUAL", description: "General knowledge and lateral thinking quiz." },
-  { title: "FRAME FLUX", code: "NT-002", duration: "2 HRS", venue: "MEDIA LAB", teamSize: "TEAM OF 3", description: "Short film / reel making competition." },
-  { title: "OTAKU STYLE", code: "NT-003", duration: "2 HRS", venue: "MAIN HALL", teamSize: "INDIVIDUAL", description: "Anime cosplay and trivia showcase." },
-  { title: "RAPID RUMBLE", code: "NT-004", duration: "1.5 HRS", venue: "ARENA", teamSize: "TEAM OF 4", description: "Fast-paced multi-round mini-games." },
-];
+    return (
+      <motion.div
+        className="p-6 h-full overflow-y-auto scrollbar-hide"
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        <button
+          onClick={() => setSelectedEvent(null)}
+          className="flex items-center gap-2 mb-4 text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" /> BACK TO HUB
+        </button>
 
-const EventCard = ({ event, index }: { event: EventSpec; index: number }) => (
-  <motion.div
-    className="p-4 rounded-lg border border-border/50 bg-card/30 hover:border-primary/30 transition-colors"
-    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: index * 0.05 }}
-    whileHover={{ y: -2 }}
-  >
-    <div className="flex justify-between items-start mb-2">
-      <h3 className="font-display text-xs tracking-wider text-primary font-bold">{event.title}</h3>
-      <span className="text-[7px] font-mono text-muted-foreground">{event.code}</span>
-    </div>
-    <p className="text-[10px] text-muted-foreground mb-3">{event.description}</p>
-    <div className="flex gap-3 text-[8px] font-mono text-muted-foreground">
-      <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-primary/60" />{event.duration}</span>
-      <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-primary/60" />{event.venue}</span>
-      <span className="flex items-center gap-1"><Users className="w-3 h-3 text-primary/60" />{event.teamSize}</span>
-    </div>
-  </motion.div>
-);
+        <div className="flex gap-4 mb-4">
+          <div className="w-14 h-14 rounded-xl bg-zinc-900/60 border border-zinc-800 flex items-center justify-center">
+            {LucideIcon && <LucideIcon className="w-7 h-7 text-primary drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]" strokeWidth={1.5} />}
+          </div>
+          <div>
+            <h2 className="font-display text-xs tracking-wider text-primary font-bold">{selectedEvent.title}</h2>
+            <div className="flex gap-3 mt-1 text-[8px] font-mono text-muted-foreground">
+              <span className="flex items-center gap-1"><Clock className="w-3 h-3 text-primary/60" />{selectedEvent.duration}</span>
+              <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-primary/60" />{selectedEvent.venue}</span>
+              <span className="flex items-center gap-1"><Users className="w-3 h-3 text-primary/60" />{selectedEvent.teamSize}</span>
+            </div>
+          </div>
+        </div>
 
-const DesktopEventsContent = () => (
-  <div className="p-6 grid grid-cols-2 gap-6 h-full overflow-y-auto scrollbar-hide">
-    <div>
-      <div className="flex items-center gap-2 mb-4">
-        <Wrench className="w-4 h-4 text-primary" />
-        <span className="font-display text-[10px] tracking-[0.3em] text-primary">TECHNICAL EVENTS</span>
-        <span className="text-[8px] font-mono text-muted-foreground ml-auto">5 MODULES</span>
+        <p className="text-[10px] text-foreground/70 mb-4 leading-relaxed">{selectedEvent.description}</p>
+
+        <div className="grid grid-cols-2 gap-6">
+          <div>
+            <span className="text-[8px] font-display tracking-[0.3em] text-muted-foreground block mb-2">GUIDELINES</span>
+            <div className="space-y-1.5">
+              {selectedEvent.guidelines.map((g, i) => (
+                <div key={i} className="flex gap-2 items-start">
+                  <span className="text-[7px] font-mono text-primary/60 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="text-[9px] text-foreground/60 leading-relaxed">{g}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-4">
+            {prizes && (
+              <div>
+                <span className="text-[8px] font-display tracking-[0.3em] text-muted-foreground block mb-2">PRIZES</span>
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { label: "🥇", sub: "GOLD", amount: prizes.first, cls: "border-yellow-500/40" },
+                    { label: "🥈", sub: "SILVER", amount: prizes.second, cls: "border-zinc-400/40" },
+                    { label: "🥉", sub: "BRONZE", amount: prizes.third, cls: "border-orange-600/40" },
+                  ].map((p) => (
+                    <div key={p.sub} className={`rounded-lg border p-2 text-center ${p.cls}`}>
+                      <span className="text-base block">{p.label}</span>
+                      <span className="text-[7px] font-display tracking-wider text-muted-foreground block">{p.sub}</span>
+                      <span className="text-[10px] font-mono text-primary font-bold">{p.amount}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div>
+              <span className="text-[8px] font-display tracking-[0.3em] text-muted-foreground block mb-2">CONTACTS</span>
+              {contacts.map((c) => (
+                <div key={c.phone} className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-lg px-2 py-1.5 mb-1.5">
+                  <span className="text-[9px] font-mono text-foreground/80">{c.name}</span>
+                  <a href={`tel:${c.phone}`} className="w-6 h-6 rounded-full bg-green-600/20 border border-green-600/30 flex items-center justify-center">
+                    <Phone className="w-3 h-3 text-green-400" />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  return (
+    <div className="p-6 h-full overflow-y-auto scrollbar-hide space-y-6">
+      {/* Technical */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <Wrench className="w-4 h-4 text-primary" />
+          <span className="font-display text-[10px] tracking-[0.3em] text-primary">TECHNICAL EVENTS</span>
+          <span className="text-[8px] font-mono text-muted-foreground ml-auto">5 MODULES</span>
+        </div>
+        <div className="grid grid-cols-4 gap-3">
+          {techEvents.map((e) => (
+            <DesktopIconCard key={e.id} event={e} onClick={() => setSelectedEvent(e)} />
+          ))}
+        </div>
       </div>
-      <div className="space-y-3">
-        {techEvents.map((e, i) => <EventCard key={e.code} event={e} index={i} />)}
+
+      {/* Non-Technical */}
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <Gamepad2 className="w-4 h-4 text-orange-400" />
+          <span className="font-display text-[10px] tracking-[0.3em] text-orange-400">NON-TECHNICAL</span>
+          <span className="text-[8px] font-mono text-muted-foreground ml-auto">4 MODULES</span>
+        </div>
+        <div className="grid grid-cols-4 gap-3">
+          {nonTechEvents.map((e) => (
+            <DesktopIconCard key={e.id} event={e} onClick={() => setSelectedEvent(e)} />
+          ))}
+        </div>
       </div>
     </div>
-    <div>
-      <div className="flex items-center gap-2 mb-4">
-        <Gamepad2 className="w-4 h-4 text-orange-400" />
-        <span className="font-display text-[10px] tracking-[0.3em] text-orange-400">NON-TECHNICAL</span>
-        <span className="text-[8px] font-mono text-muted-foreground ml-auto">4 MODULES</span>
-      </div>
-      <div className="space-y-3">
-        {nonTechEvents.map((e, i) => <EventCard key={e.code} event={e} index={i + 5} />)}
-      </div>
-    </div>
-  </div>
-);
+  );
+};
+
+const DesktopIconCard = ({ event, onClick }: { event: EventData; onClick: () => void }) => {
+  const LucideIcon = icons[event.icon as keyof typeof icons];
+  const accentColor = event.type === "technical"
+    ? "text-primary drop-shadow-[0_0_12px_rgba(255,215,0,0.6)]"
+    : "text-orange-400 drop-shadow-[0_0_12px_rgba(255,87,34,0.5)]";
+
+  return (
+    <motion.button
+      onClick={onClick}
+      className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-xl flex flex-col items-center justify-center gap-2 p-4 aspect-square hover:border-primary/40 transition-colors"
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {LucideIcon && <LucideIcon className={`w-8 h-8 ${accentColor}`} strokeWidth={1.5} />}
+      <span className="font-mono text-[8px] tracking-wider text-foreground/80 text-center leading-tight">{event.title}</span>
+    </motion.button>
+  );
+};
 
 export default DesktopEventsContent;

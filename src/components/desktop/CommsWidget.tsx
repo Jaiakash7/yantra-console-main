@@ -16,7 +16,7 @@ const CommsWidget = () => (
   >
     <div className="flex items-center gap-2 mb-3">
       <Phone className="w-3 h-3 text-primary" />
-      <span className="text-[8px] font-display tracking-[0.2em] text-primary/80">COMMS ARRAY</span>
+      <span className="text-[8px] font-display tracking-[0.2em] text-primary/80">CONTACTS</span>
       <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse ml-auto" />
     </div>
     <div className="space-y-2">

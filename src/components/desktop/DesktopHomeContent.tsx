@@ -30,7 +30,7 @@ const DesktopHomeContent = ({ onOpenEvents, onOpenApp }: Props) => (
           style={{ boxShadow: "inset 0 2px 8px rgba(0,0,0,0.4)" }}
         >
           <div className="w-12 h-12 rounded-lg border border-border/50 bg-muted/30 flex items-center justify-center group-hover:border-primary/50 transition-colors">
-            <Icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+            <Icon className="w-9 h-9 text-muted-foreground group-hover:text-primary transition-colors" />
           </div>
           <span className="text-[9px] font-display tracking-[0.2em] text-muted-foreground group-hover:text-primary transition-colors">
             {label}

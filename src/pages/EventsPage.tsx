@@ -13,7 +13,7 @@ interface EventSpec {
 }
 
 const techEvents: EventSpec[] = [
-  { title: "CAD MODELLING", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Flagship event — precision CAD modeling competition using SolidWorks/CATIA under pressure." },
+  { title: "DynamiCAD", code: "TE-001", duration: "2 HRS", venue: "CAD LAB-1", teamSize: "INDIVIDUAL", description: "Flagship event — precision CAD modeling competition using SolidWorks/CATIA under pressure." },
   { title: "BRAIN SPARKS", code: "TE-002", duration: "1.5 HRS", venue: "SEMINAR HALL-B", teamSize: "TEAM OF 2", description: "Rapid-fire technical quiz spanning core mechanical engineering domains." },
   { title: "PAPER PRESENTATION", code: "TE-003", duration: "3 HRS", venue: "AUDITORIUM", teamSize: "TEAM OF 2", description: "Present your research paper on emerging mechanical engineering topics." },
   { title: "COMPONENT-MESHING", code: "TE-004", duration: "2 HRS", venue: "LAB-C3", teamSize: "TEAM OF 3", description: "Identify, assemble, and mesh mechanical components against the clock." },
@@ -21,9 +21,9 @@ const techEvents: EventSpec[] = [
 ];
 
 const nonTechEvents: EventSpec[] = [
-  { title: "FACT FORGE", code: "NT-001", duration: "1 HR", venue: "SEMINAR HALL-A", teamSize: "INDIVIDUAL", description: "Forge facts from fiction — a quiz testing general knowledge and lateral thinking." },
+  { title: "CRIC FORGE", code: "NT-001", duration: "1 HR", venue: "SEMINAR HALL-A", teamSize: "INDIVIDUAL", description: "Forge facts from fiction — a quiz testing general knowledge and lateral thinking." },
   { title: "FRAME FLUX", code: "NT-002", duration: "2 HRS", venue: "MEDIA LAB", teamSize: "TEAM OF 3", description: "Short film / reel making competition with a surprise theme reveal." },
-  { title: "OTAKU STYLE", code: "NT-003", duration: "2 HRS", venue: "MAIN HALL", teamSize: "INDIVIDUAL", description: "Anime-inspired cosplay and trivia — showcase your otaku spirit." },
+  { title: "OTAKU CLASH", code: "NT-003", duration: "2 HRS", venue: "MAIN HALL", teamSize: "INDIVIDUAL", description: "Anime-inspired cosplay and trivia — showcase your otaku spirit." },
   { title: "RAPID RUMBLE", code: "NT-004", duration: "1.5 HRS", venue: "ARENA", teamSize: "TEAM OF 4", description: "Fast-paced multi-round mini-games combining speed, strategy, and teamwork." },
 ];
 

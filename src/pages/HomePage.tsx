@@ -10,7 +10,7 @@ const gridButtons = [
   { icon: BookOpen, label: "INSTRUCTION", path: "/instruction" },
   { icon: Info, label: "ABOUT", path: "/about" },
   { icon: ImageIcon, label: "GALLERY", path: "/gallery" },
-  { icon: Trophy, label: "PRIZE", path: "/prize" },
+  { icon: Trophy, label: "PRIZES", path: "/prizes" },
 ];
 
 const contacts = [

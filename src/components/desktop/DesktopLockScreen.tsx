@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import yantraLogo from "@/assets/yantra-logo.jpeg";
-
+import desktopVideo1 from "@/assets/lg.mp4";
 interface Props {
   onBoot: () => void;
 }
@@ -17,16 +17,17 @@ const DesktopLockScreen = ({ onBoot }: Props) => {
   return (
     <div className="fixed inset-0 bg-background flex flex-col items-center justify-center z-50">
       {/* Blueprint grid background */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(hsl(var(--blueprint-line) / 0.2) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(var(--blueprint-line) / 0.2) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
+       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+     <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={desktopVideo1} type="video/mp4" />
+        </video>
+        </div>
 
       <AnimatePresence>
         {!booting ? (
@@ -45,14 +46,12 @@ const DesktopLockScreen = ({ onBoot }: Props) => {
 
             <div className="text-center">
               <h1 className="font-display text-2xl tracking-[0.3em] gold-text font-bold">YANTRA 2K26</h1>
-              <p className="text-[10px] font-mono text-muted-foreground mt-2 tracking-wider">
-                MEENAKSHI SUNDARARAJAN ENGG COLLEGE // DEPT. OF MECH.
-              </p>
+             
             </div>
 
             <motion.button
               onClick={handleBoot}
-              className="px-8 py-3 rounded-lg border border-primary/50 bg-primary/10 font-display text-xs tracking-[0.2em] text-primary hover:bg-primary/20 transition-colors gold-glow"
+             className="px-8 py-3 rounded-lg border border-zinc-800 bg-black font-display text-xs tracking-[0.2em] text-white hover:bg-zinc-900 transition-colors black-glow"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
