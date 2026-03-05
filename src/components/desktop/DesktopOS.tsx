@@ -5,11 +5,8 @@ import DesktopShelf, { type DesktopApp } from "./DesktopShelf";
 import AppWindow from "./AppWindow";
 import PrizePoolWidget from "./PrizePoolWidget";
 import CommsWidget from "./CommsWidget";
-import yantraLogo from "@/assets/yantra-logo.jpeg";
 
-// 1. IMPORT YOUR VIDEO HERE
-// Make sure you have a file named cosmic-bg.mp4 in your assets folder!
-import desktopVideo from "@/assets/bg.mp4";
+import yantraLogo from "@/assets/yantra.mp4";
 
 import DesktopHomeContent from "./DesktopHomeContent";
 import DesktopEventsContent from "./DesktopEventsContent";
@@ -20,6 +17,35 @@ import DesktopAboutContent from "./DesktopAboutContent";
 import DesktopGalleryContent from "./DesktopGalleryContent";
 import DesktopPrizeContent from "./DesktopPrizeContent";
 import SponsorsContent from "./SponsorsContent";
+
+// === Golden Sparks Particle System ===
+const GoldenSparks = () => (
+  <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    {[...Array(40)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute w-1 h-1 rounded-full bg-yellow-200 shadow-[0_0_10px_2px_rgba(234,179,8,0.8)]"
+        initial={{
+          x: `${Math.random() * 100}vw`,
+          y: "110vh",
+          opacity: 0,
+          scale: Math.random() * 1.5 + 0.5,
+        }}
+        animate={{
+          y: "-10vh",
+          x: `${Math.random() * 100}vw`,
+          opacity: [0, 1, 1, 0],
+        }}
+        transition={{
+          duration: Math.random() * 5 + 4,
+          repeat: Infinity,
+          delay: Math.random() * 5,
+          ease: "linear",
+        }}
+      />
+    ))}
+  </div>
+);
 
 const appMeta: Record<DesktopApp, { title: string; pos: { x: number; y: number }; width?: number; height?: number }> = {
   home: { title: "YANTRA CONSOLE // HOME", pos: { x: 300, y: 80 }, width: 520, height: 560 },
@@ -45,22 +71,16 @@ const DesktopOS = () => {
   const [openApps, setOpenApps] = useState<DesktopApp[]>(["home"]);
   const [focusOrder, setFocusOrder] = useState<DesktopApp[]>(["home"]);
 
-  // STRICT 3-WINDOW LIMIT LOGIC APPLIED HERE
   const handleOpen = useCallback((app: DesktopApp) => {
     setOpenApps((prev) => {
       if (prev.includes(app)) return prev;
       const newApps = [...prev, app];
-      if (newApps.length > 3) {
-        return newApps.slice(newApps.length - 3);
-      }
+      if (newApps.length > 3) return newApps.slice(newApps.length - 3);
       return newApps;
     });
-
     setFocusOrder((prev) => {
       const newFocus = [...prev.filter((a) => a !== app), app];
-      if (newFocus.length > 3) {
-        return newFocus.slice(newFocus.length - 3);
-      }
+      if (newFocus.length > 3) return newFocus.slice(newFocus.length - 3);
       return newFocus;
     });
   }, []);
@@ -91,26 +111,32 @@ const DesktopOS = () => {
   };
 
   return (
-    <div className="fixed inset-0 bg-background overflow-hidden">
-      
-      {/* 2. VIDEO BACKGROUND SYSTEM */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <video
-          autoPlay
-          loop
-          muted
+    <div className="fixed inset-0 bg-zinc-950 overflow-hidden">
+  {/* === VIDEO BACKGROUND & SPARKS SYSTEM === */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center">
+        
+        {/* Centered Video, max 500px wide, slightly faded to act as a watermark */}
+        <motion.video 
+          autoPlay 
+          loop 
+          muted 
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 0.4, scale: 1 }} // You can adjust 0.4 to make it brighter/darker
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="w-[280vw] max-w-[800px] object-contain mix-blend-screen rounded-xl"
         >
-          <source src={desktopVideo} type="video/mp4" />
-        </video>
-        {/* Dark overlay to keep text readable */}
-       
+          <source src={yantraLogo} type="video/mp4" />
+        </motion.video>
+        
+        {/* Floating Sparks Effect */}
+        <GoldenSparks />
+
+        {/* Radial dark vignette to smoothly fade the edges into the background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(9,9,11,0.95)_100%)]" />
       </div>
 
-    
-
-      {/* Desktop shortcuts — left side */}
+      {/* Desktop shortcuts */}
       <div className="absolute top-6 left-6 flex flex-col gap-4 z-30">
         {desktopShortcuts.map(({ id, icon: Icon, label }) => (
           <motion.button
@@ -120,11 +146,10 @@ const DesktopOS = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-12 h-12 rounded-xl border border-border/50 bg-white/5 backdrop-blur-sm flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors">
-              <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+            <div className="w-12 h-12 rounded-xl border border-zinc-800/50 bg-black/40 backdrop-blur-md flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+              <Icon className="w-5 h-5 text-zinc-400 group-hover:text-primary transition-colors" />
             </div>
-            {/* Added drop shadow to icon text so it pops over the video */}
-            <span className="text-[8px] font-display tracking-wider text-muted-foreground group-hover:text-primary transition-colors text-center drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+            <span className="text-[8px] font-display tracking-wider text-zinc-500 group-hover:text-primary transition-colors text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               {label}
             </span>
           </motion.button>
@@ -132,7 +157,7 @@ const DesktopOS = () => {
       </div>
 
       {/* Desktop widgets */}
-      <div className="absolute top-6 right-6 space-y-4 z-30">
+      <div className="absolute top-6 right-6 space-y-4 z-30 drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
         <PrizePoolWidget />
         <CommsWidget />
       </div>
@@ -157,9 +182,9 @@ const DesktopOS = () => {
 
       <DesktopShelf openApps={openApps} onOpen={handleOpen} />
 
-      {/* NEW HIGH-VISIBILITY FOOTER */}
+      {/* FOOTER */}
       <div className="fixed bottom-0 left-4 pb-2 z-50 pointer-events-none">
-        <p className="text-xs text-primary/80 font-mono tracking-widest uppercase font-semibold drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+        <p className="text-xs text-primary/60 font-mono tracking-widest uppercase font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
           PROPERTY OF MEENAKSHI SUNDARARAJAN ENGG COLLEGE // DEPT. OF MECH.
         </p>
       </div>
