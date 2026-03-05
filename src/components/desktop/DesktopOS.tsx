@@ -47,16 +47,17 @@ const GoldenSparks = () => (
   </div>
 );
 
-const appMeta: Record<DesktopApp, { title: string; pos: { x: number; y: number }; width?: number; height?: number }> = {
-  home: { title: "YANTRA CONSOLE // HOME", pos: { x: 300, y: 80 }, width: 520, height: 560 },
-  events: { title: "EVENT MODULES // INDEX", pos: { x: 150, y: 60 }, width: 800, height: 520 },
-  map: { title: "FACILITY MAP // RADAR", pos: { x: 200, y: 70 }, width: 800, height: 600 },
-  schedule: { title: "SYSTEM SCHEDULE // TIMELINE", pos: { x: 250, y: 90 }, width: 600, height: 480 },
-  instruction: { title: "INSTRUCTIONS // PROTOCOL", pos: { x: 350, y: 100 }, width: 500, height: 460 },
-  about: { title: "ABOUT // MANIFEST", pos: { x: 320, y: 80 }, width: 500, height: 520 },
-  gallery: { title: "GALLERY // ARCHIVE", pos: { x: 180, y: 80 }, width: 700, height: 480 },
-  prize: { title: "PRIZE POOL // MANIFEST", pos: { x: 280, y: 70 }, width: 500, height: 520 },
-  sponsors: { title: "SPONSORS // REGISTRY", pos: { x: 340, y: 90 }, width: 500, height: 400 },
+// REMOVED fixed width/height so all windows take the 65vw/65vh size from AppWindow
+const appMeta: Record<DesktopApp, { title: string; pos: { x: number; y: number } }> = {
+  home: { title: "YANTRA CONSOLE // HOME", pos: { x: 300, y: 80 } },
+  events: { title: "EVENT MODULES // INDEX", pos: { x: 150, y: 60 } },
+  map: { title: "FACILITY MAP // RADAR", pos: { x: 200, y: 70 } },
+  schedule: { title: "SYSTEM SCHEDULE // TIMELINE", pos: { x: 250, y: 90 } },
+  instruction: { title: "INSTRUCTIONS // PROTOCOL", pos: { x: 350, y: 100 } },
+  about: { title: "ABOUT // MANIFEST", pos: { x: 320, y: 80 } },
+  gallery: { title: "GALLERY // ARCHIVE", pos: { x: 180, y: 80 } },
+  prize: { title: "PRIZE POOL // MANIFEST", pos: { x: 280, y: 70 } },
+  sponsors: { title: "SPONSORS // REGISTRY", pos: { x: 340, y: 90 } },
 };
 
 const desktopShortcuts: { id: DesktopApp; icon: typeof BookOpen; label: string }[] = [
@@ -122,9 +123,9 @@ const DesktopOS = () => {
           muted 
           playsInline
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.4, scale: 1 }} // You can adjust 0.4 to make it brighter/darker
+          animate={{ opacity: 0.4, scale: 1 }} 
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="w-[280vw] max-w-[800px] object-contain mix-blend-screen rounded-xl"
+          className="w-[280vw] max-w-[1300px] object-contain mix-blend-screen rounded-xl"
         >
           <source src={yantraLogo} type="video/mp4" />
         </motion.video>
@@ -172,8 +173,6 @@ const DesktopOS = () => {
             defaultPosition={appMeta[app].pos}
             onClose={() => handleClose(app)}
             onFocus={() => handleFocus(app)}
-            width={appMeta[app].width}
-            height={appMeta[app].height}
           >
             {renderContent(app)}
           </AppWindow>

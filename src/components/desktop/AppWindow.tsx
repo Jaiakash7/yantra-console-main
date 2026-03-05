@@ -9,8 +9,8 @@ interface Props {
   onFocus: () => void;
   zIndex: number;
   defaultPosition?: { x: number; y: number };
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
 }
 
 const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition, width, height }: Props) => {
@@ -35,11 +35,16 @@ const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition,
         onPointerDown={onFocus}
       >
         <div
-          className={`${isMapWindow ? "w-[800px] h-[600px]" : "max-w-[85vw]"} rounded-xl overflow-hidden border border-border/50 bg-card/95 backdrop-blur-md shadow-2xl`}
-          style={isMapWindow ? undefined : { width: width ? `${width}px` : "700px" }}
+          // Added 'flex flex-col' so content stays strictly within the height limit
+          className={`${isMapWindow ? "w-[70vw] h-[75vh]" : "flex flex-col"} rounded-xl overflow-hidden border border-border/50 bg-card/95 backdrop-blur-md shadow-2xl`}
+          style={isMapWindow ? undefined : { 
+            // Defaulting to 65% of screen width (65vw) and height (65vh)
+            width: width ? (typeof width === 'number' ? `${width}px` : width) : "70vw",
+            height: height ? (typeof height === 'number' ? `${height}px` : height) : "75vh" 
+          }}
         >
           {/* Title bar */}
-          <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/50 cursor-grab active:cursor-grabbing">
+          <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b border-border/50 cursor-grab active:cursor-grabbing shrink-0">
             <span className="font-display text-[10px] tracking-[0.2em] text-primary/80">{title}</span>
             <div className="flex items-center gap-2">
               <button
@@ -59,8 +64,8 @@ const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition,
           {/* Content */}
           {!minimized && (
             <div
-              className={isMapWindow ? "overflow-hidden h-[560px]" : "overflow-y-auto scrollbar-hide"}
-              style={isMapWindow ? undefined : { maxHeight: height ? `${height - 40}px` : "65vh" }}
+              // Added 'flex-1' to take up remaining space and allow internal scrolling
+              className={isMapWindow ? "overflow-hidden h-[560px]" : "overflow-y-auto scrollbar-hide flex-1"}
             >
               {children}
             </div>
