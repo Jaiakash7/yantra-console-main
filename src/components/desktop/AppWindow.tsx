@@ -39,8 +39,8 @@ const AppWindow = ({ title, children, onClose, onFocus, zIndex, defaultPosition,
           className={`${isMapWindow ? "w-[70vw] h-[75vh]" : "flex flex-col"} rounded-xl overflow-hidden border border-border/50 bg-card/95 backdrop-blur-md shadow-2xl`}
           style={isMapWindow ? undefined : { 
             // Defaulting to 65% of screen width (65vw) and height (65vh)
-            width: width ? (typeof width === 'number' ? `${width}px` : width) : "70vw",
-            height: height ? (typeof height === 'number' ? `${height}px` : height) : "75vh" 
+            width: width ? (typeof width === 'number' ? `${width}px` : width) : "69vw",
+            height: height ? (typeof height === 'number' ? `${height}px` : height) : "72vh" 
           }}
         >
           {/* Title bar */}

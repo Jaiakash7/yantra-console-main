@@ -1,12 +1,15 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, Info, ImageIcon, Trophy, Building2 } from "lucide-react";
+import { BookOpen, Info, ImageIcon, Trophy, Building2, Volume2, VolumeX } from "lucide-react";
 import DesktopShelf, { type DesktopApp } from "./DesktopShelf";
 import AppWindow from "./AppWindow";
 import PrizePoolWidget from "./PrizePoolWidget";
 import CommsWidget from "./CommsWidget";
 
 import yantraLogo from "@/assets/yantra.mp4";
+
+// ⚠️ CHANGE THIS IMPORT to your actual background music file if different
+import bgMusic from "@/assets/bg.mpeg"; 
 
 import DesktopHomeContent from "./DesktopHomeContent";
 import DesktopEventsContent from "./DesktopEventsContent";
@@ -47,7 +50,6 @@ const GoldenSparks = () => (
   </div>
 );
 
-// REMOVED fixed width/height so all windows take the 65vw/65vh size from AppWindow
 const appMeta: Record<DesktopApp, { title: string; pos: { x: number; y: number } }> = {
   home: { title: "YANTRA CONSOLE // HOME", pos: { x: 300, y: 80 } },
   events: { title: "EVENT MODULES // INDEX", pos: { x: 150, y: 60 } },
@@ -71,6 +73,22 @@ const desktopShortcuts: { id: DesktopApp; icon: typeof BookOpen; label: string }
 const DesktopOS = () => {
   const [openApps, setOpenApps] = useState<DesktopApp[]>(["home"]);
   const [focusOrder, setFocusOrder] = useState<DesktopApp[]>(["home"]);
+  
+  // === Audio State & Ref ===
+  const [isAudioPlaying, setIsAudioPlaying] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Play or pause audio based on state
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isAudioPlaying) {
+        // We catch the promise to prevent errors if the browser blocks autoplay initially
+        audioRef.current.play().catch(e => console.warn("Autoplay blocked:", e));
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isAudioPlaying]);
 
   const handleOpen = useCallback((app: DesktopApp) => {
     setOpenApps((prev) => {
@@ -113,10 +131,12 @@ const DesktopOS = () => {
 
   return (
     <div className="fixed inset-0 bg-zinc-950 overflow-hidden">
-  {/* === VIDEO BACKGROUND & SPARKS SYSTEM === */}
+      
+      {/* Background Audio Element */}
+      <audio ref={audioRef} src={bgMusic} loop />
+
+      {/* === VIDEO BACKGROUND & SPARKS SYSTEM === */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center">
-        
-        {/* Centered Video, max 500px wide, slightly faded to act as a watermark */}
         <motion.video 
           autoPlay 
           loop 
@@ -129,35 +149,31 @@ const DesktopOS = () => {
         >
           <source src={yantraLogo} type="video/mp4" />
         </motion.video>
-        
-        {/* Floating Sparks Effect */}
         <GoldenSparks />
-
-        {/* Radial dark vignette to smoothly fade the edges into the background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(9,9,11,0.95)_100%)]" />
       </div>
 
       {/* Desktop shortcuts */}
-      <div className="absolute top-6 left-6 flex flex-col gap-4 z-30">
+      <div className="absolute top-6 left-6 flex flex-col gap-6 z-30">
         {desktopShortcuts.map(({ id, icon: Icon, label }) => (
           <motion.button
             key={id}
             onClick={() => handleOpen(id)}
-            className="flex flex-col items-center gap-1.5 w-16 group"
+            className="flex flex-col items-center gap-2 w-20 group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-12 h-12 rounded-xl border border-zinc-800/50 bg-black/40 backdrop-blur-md flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
-              <Icon className="w-5 h-5 text-zinc-400 group-hover:text-primary transition-colors" />
+            <div className="w-16 h-16 rounded-2xl border border-zinc-800/50 bg-black/40 backdrop-blur-md flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-colors shadow-[0_4px_10px_rgba(0,0,0,0.5)]">
+              <Icon className="w-7 h-7 text-zinc-400 group-hover:text-primary transition-colors" />
             </div>
-            <span className="text-[8px] font-display tracking-wider text-zinc-500 group-hover:text-primary transition-colors text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            <span className="text-[10px] font-display tracking-wider text-zinc-500 group-hover:text-primary transition-colors text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               {label}
             </span>
           </motion.button>
         ))}
       </div>
 
-      {/* Desktop widgets */}
+      {/* Desktop widgets (Top Right) */}
       <div className="absolute top-6 right-6 space-y-4 z-30 drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
         <PrizePoolWidget />
         <CommsWidget />
@@ -180,6 +196,31 @@ const DesktopOS = () => {
       </AnimatePresence>
 
       <DesktopShelf openApps={openApps} onOpen={handleOpen} />
+
+      {/* BOTTOM RIGHT AUDIO CONTROL WIDGET */}
+      <div className="absolute bottom-6 right-6 z-50 flex items-center justify-center">
+        <motion.button
+          onClick={() => setIsAudioPlaying(!isAudioPlaying)}
+          className={`flex items-center justify-center w-14 h-14 rounded-xl border backdrop-blur-md transition-all shadow-lg ${
+            isAudioPlaying 
+              ? "bg-primary/10 border-primary/40 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:bg-primary/20 hover:border-primary/80" 
+              : "bg-black/40 border-zinc-800/50 hover:bg-white/5 hover:border-white/20"
+          }`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isAudioPlaying ? (
+            <Volume2 className="w-6 h-6 text-primary drop-shadow-[0_0_8px_rgba(245,158,11,0.8)]" />
+          ) : (
+            <VolumeX className="w-6 h-6 text-zinc-500" />
+          )}
+          
+          {/* Subtle live indicator dot when playing */}
+          {isAudioPlaying && (
+            <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+          )}
+        </motion.button>
+      </div>
 
       {/* FOOTER */}
       <div className="fixed bottom-0 left-4 pb-2 z-50 pointer-events-none">

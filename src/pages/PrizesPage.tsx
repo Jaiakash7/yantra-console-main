@@ -62,7 +62,7 @@ const PrizesPage = () => {
       <div className="flex-1 overflow-y-auto scrollbar-hide p-4 pb-[90px]">
         {/* Total banner */}
         <div className="text-center mb-6">
-          <span className="font-mono text-3xl lg:text-4xl text-primary font-bold">₹50,000+</span>
+          <span className="font-mono text-3xl lg:text-4xl text-primary font-bold">₹13,000+</span>
           <p className="text-[8px] font-mono tracking-[0.3em] text-muted-foreground mt-1">TOTAL PRIZE POOL // ALL EVENTS</p>
         </div>
 

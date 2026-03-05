@@ -3,6 +3,9 @@ import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "
 import yantraLogo from "@/assets/yantra-logo.jpeg";
 import desktopVideo1 from "@/assets/lg.mp4";
 
+// Updated to use your .mpeg audio file!
+import customIgnitionSound from "@/assets/ignition.mpeg"; 
+
 interface Props {
   onBoot: () => void;
 }
@@ -37,24 +40,10 @@ const DesktopLockScreen = ({ onBoot }: Props) => {
   const circumference = 2 * Math.PI * 45; 
   const strokeDashoffset = useTransform(rpmCount, [0, 10000], [circumference, 0]);
 
-  // Deep V12 Synthesis Engine
+  // Play custom MPEG audio instead of synthesized sound
   const playIgnitionSound = useCallback(() => {
-    const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    
-    osc.type = "sawtooth";
-    osc.frequency.setValueAtTime(30, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(350, ctx.currentTime + 0.8);
-    osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 2.0);
-    
-    gain.gain.setValueAtTime(0.2, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.5);
-    
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 2.5);
+    const audio = new Audio(customIgnitionSound);
+    audio.play().catch((error) => console.error("Error playing ignition sound:", error));
   }, []);
 
   const handleIgnition = () => {
@@ -257,18 +246,14 @@ const DesktopLockScreen = ({ onBoot }: Props) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             exit={{ opacity: 0 }}
-            // perspective gives it a true 3D camera feel
             style={{ perspective: "1000px" }}
           >
-            {/* The 3D Rotating Container */}
             <motion.div
               className="relative w-40 h-40 shadow-[0_0_80px_rgba(245,158,11,0.4)] rounded-full"
               style={{ transformStyle: "preserve-3d" }}
               animate={{ rotateY: [0, 360] }}
-              // linear easing makes it spin smoothly like a globe without stopping
               transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
             >
-              {/* FRONT FACE OF THE COIN */}
               <div 
                 className="absolute inset-0 rounded-full border-2 border-amber-500 bg-black overflow-hidden"
                 style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
@@ -280,8 +265,6 @@ const DesktopLockScreen = ({ onBoot }: Props) => {
                   style={{ filter: "sepia(1) saturate(300%) hue-rotate(5deg)" }} 
                 />
               </div>
-
-              {/* BACK FACE OF THE COIN (Rotated 180deg by default) */}
               <div 
                 className="absolute inset-0 rounded-full border-2 border-amber-500 bg-black overflow-hidden"
                 style={{ 
@@ -299,7 +282,6 @@ const DesktopLockScreen = ({ onBoot }: Props) => {
               </div>
             </motion.div>
             
-            {/* Loading Bar Below */}
             <motion.div className="mt-12 text-center">
               <motion.span 
                 className="text-3xl font-black tracking-[0.8em] text-amber-500"
