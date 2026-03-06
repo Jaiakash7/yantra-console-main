@@ -37,17 +37,31 @@ const HomePage = () => {
   return (
     <div className="flex flex-col h-full relative">
       <div className="px-4 pt-2">
-        <DynamicIsland />
+        <DynamicIsland activePage={page} />
       </div>
 
       {/* Page indicators */}
       <div className="flex justify-center gap-1.5 py-2">
         {[0, 1].map((i) => (
-          <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${
-            page === i ? "bg-primary w-4" : "bg-muted-foreground/30"
+          <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${
+            page === i ? "bg-primary w-4" : "bg-muted-foreground/20 w-1.5"
           }`} />
         ))}
       </div>
+
+      {/* Swipe hint — only visible on page 0 */}
+      {page === 0 && (
+        <motion.div
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-0.5 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, x: [0, -6, 0] }}
+          transition={{ x: { repeat: Infinity, duration: 1.2, ease: "easeInOut" }, opacity: { duration: 0.5 } }}
+          exit={{ opacity: 0 }}
+        >
+          <ChevronRight className="w-5 h-5 text-primary/60" />
+          <span className="text-[7px] font-mono text-muted-foreground/60 tracking-wider">SWIPE</span>
+        </motion.div>
+      )}
 
       {/* NATIVE SWIPEABLE AREA (Restored from your old code) */}
       <div 

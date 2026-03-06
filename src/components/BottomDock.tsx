@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Home, Calendar, Map, Clock } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useIsDesktop } from "@/hooks/use-desktop"; // Import your hook
 
 const dockItems = [
   { icon: Home, label: "HOME", path: "/home", appId: "home" },
@@ -12,13 +13,14 @@ const dockItems = [
 const BottomDock = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isDesktop = useIsDesktop(); // Check if the device is a desktop
 
   const handleNav = (path: string, appId: string) => {
-    // If we are on the Desktop screen, tell the DesktopOS to open the window!
-    if (location.pathname === "/home" || location.pathname === "/") {
+    // Only dispatch the desktop event if we are ACTUALLY on a desktop device
+    if (isDesktop && (location.pathname === "/home" || location.pathname === "/")) {
       window.dispatchEvent(new CustomEvent("open-desktop-app", { detail: appId }));
     } else {
-      // If we are on mobile, route normally
+      // If we are on mobile, route normally to the correct page
       navigate(path);
     }
   };

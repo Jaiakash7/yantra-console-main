@@ -2,8 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import PhoneFrame from "@/components/PhoneFrame";
+import AnimatedPage from "@/components/AnimatedPage";
+import MusicProvider from "@/components/MusicProvider";
 import Index from "./pages/Index";
 import HomePage from "./pages/HomePage";
 import EventsHub from "./pages/EventsHub";
@@ -20,8 +23,32 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const Framed = ({ children }: { children: React.ReactNode }) => (
-  <PhoneFrame>{children}</PhoneFrame>
+  <PhoneFrame>
+    <AnimatedPage>{children}</AnimatedPage>
+  </PhoneFrame>
 );
+
+const AppRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Index />} />
+        <Route path="/home" element={<Framed><HomePage /></Framed>} />
+        <Route path="/events" element={<Framed><EventsHub /></Framed>} />
+        <Route path="/events/:id" element={<Framed><EventDetails /></Framed>} />
+        <Route path="/map" element={<Framed><MapPage /></Framed>} />
+        <Route path="/schedule" element={<Framed><SchedulePage /></Framed>} />
+        <Route path="/instruction" element={<Framed><InstructionPage /></Framed>} />
+        <Route path="/about" element={<Framed><AboutPage /></Framed>} />
+        <Route path="/gallery" element={<Framed><GalleryPage /></Framed>} />
+        <Route path="/prize" element={<Framed><PrizePage /></Framed>} />
+        <Route path="/prizes" element={<Framed><PrizesPage /></Framed>} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -29,20 +56,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/home" element={<Framed><HomePage /></Framed>} />
-          <Route path="/events" element={<Framed><EventsHub /></Framed>} />
-          <Route path="/events/:id" element={<Framed><EventDetails /></Framed>} />
-          <Route path="/map" element={<Framed><MapPage /></Framed>} />
-          <Route path="/schedule" element={<Framed><SchedulePage /></Framed>} />
-          <Route path="/instruction" element={<Framed><InstructionPage /></Framed>} />
-          <Route path="/about" element={<Framed><AboutPage /></Framed>} />
-          <Route path="/gallery" element={<Framed><GalleryPage /></Framed>} />
-          <Route path="/prize" element={<Framed><PrizePage /></Framed>} />
-          <Route path="/prizes" element={<Framed><PrizesPage /></Framed>} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <MusicProvider>
+          <AppRoutes />
+        </MusicProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
