@@ -35,20 +35,19 @@ const HomePage = () => {
   }, [page]);
 
   return (
-    <div className="flex flex-col h-full relative">
+ <div className="flex flex-col h-full relative">
       <div className="px-4 pt-2">
-        <DynamicIsland activePage={page} />
+        <DynamicIsland />
       </div>
 
       {/* Page indicators */}
       <div className="flex justify-center gap-1.5 py-2">
         {[0, 1].map((i) => (
-          <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${
-            page === i ? "bg-primary w-4" : "bg-muted-foreground/20 w-1.5"
+          <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${
+            page === i ? "bg-primary w-4" : "bg-muted-foreground/30"
           }`} />
         ))}
       </div>
-
       {/* Swipe hint — only visible on page 0 */}
       {page === 0 && (
         <motion.div
