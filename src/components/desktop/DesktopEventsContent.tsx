@@ -44,17 +44,35 @@ const DesktopEventsContent = () => {
         <p className="text-sm text-foreground/70 mb-6 leading-relaxed">{selectedEvent.description}</p>
 
         <div className="grid grid-cols-2 gap-8">
-          <div>
-            <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">GUIDELINES</span>
-            <div className="space-y-2">
-              {selectedEvent.guidelines.map((g, i) => (
-                <div key={i} className="flex gap-2 items-start">
-                  <span className="text-xs font-mono text-primary/60 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
-                  <p className="text-sm text-foreground/60 leading-relaxed">{g}</p>
-                </div>
-              ))}
+          {/* --- LEFT COLUMN (GUIDELINES & REGISTER BUTTON) --- */}
+          <div className="flex flex-col">
+            <div>
+              <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">GUIDELINES</span>
+              <div className="space-y-2">
+                {selectedEvent.guidelines.map((g, i) => (
+                  <div key={i} className="flex gap-2 items-start">
+                    <span className="text-xs font-mono text-primary/60 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
+                    <p className="text-sm text-foreground/60 leading-relaxed">{g}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+            
+            {/* REGISTER BUTTON RIGHT AFTER GUIDELINES (No huge gap) */}
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 ${
+                selectedEvent.type === "technical" 
+                  ? "bg-primary text-black hover:bg-primary/90 shadow-primary/20" 
+                  : "bg-orange-500 text-black hover:bg-orange-500/90 shadow-orange-500/20"
+              }`}
+            >
+              REGISTER
+            </motion.button>
           </div>
+
+          {/* --- RIGHT COLUMN (PRIZES & CONTACTS) --- */}
           <div className="space-y-6">
             {prizes && (
               <div>
@@ -139,12 +157,6 @@ const DesktopIconCard = ({ event, onClick }: { event: EventData; onClick: () => 
     >
       {LucideIcon && <LucideIcon className={`w-10 h-10 ${accentColor}`} strokeWidth={1.5} />}
       <span className="font-mono text-[11px] tracking-wider text-foreground/80 text-center leading-tight">{event.title}</span>
-      <button
-        className="text-[9px] font-mono bg-primary/10 border border-primary/30 text-primary px-3 py-1 rounded-md mt-1 hover:bg-primary/20 transition-colors"
-        onClick={(e) => { e.stopPropagation(); onClick(); }}
-      >
-        REGISTER
-      </button>
     </motion.button>
   );
 };

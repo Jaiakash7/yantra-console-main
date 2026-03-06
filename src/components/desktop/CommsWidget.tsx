@@ -9,14 +9,17 @@ const contacts = [
 
 const CommsWidget = () => (
   <motion.div
-    className="w-56 mechanical-border rounded-lg p-3 bg-card/80 backdrop-blur-sm"
+    // Changed w-56 to w-64 to match the PrizePoolWidget
+    className="w-64 mechanical-border rounded-lg p-3 bg-card/80 backdrop-blur-sm"
     initial={{ opacity: 0, x: 40 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay: 0.8 }}
   >
     <div className="flex items-center gap-2 mb-3">
-      <Phone className="w-3 h-3 text-primary" />
-      <span className="text-[8px] font-display tracking-[0.2em] text-primary/80">CONTACTS</span>
+      {/* Icon sized up from w-3 to w-3.5 */}
+      <Phone className="w-3.5 h-3.5 text-primary" />
+      {/* Title sized up from text-[8px] to text-[10px] */}
+      <span className="text-[10px] font-display tracking-[0.2em] text-primary/80">CONTACTS</span>
       <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse ml-auto" />
     </div>
     <div className="space-y-2">
@@ -26,8 +29,9 @@ const CommsWidget = () => (
           href={`tel:${c.number}`}
           className="flex items-center justify-between hover:bg-muted/20 rounded px-1 py-0.5 transition-colors"
         >
-          <span className="text-[9px] font-mono text-secondary-foreground/70">{c.name}</span>
-          <span className="text-[8px] font-mono text-primary/60">{c.number}</span>
+          {/* Text sized up to text-xs */}
+          <span className="text-xs font-mono text-secondary-foreground/70">{c.name}</span>
+          <span className="text-xs font-mono text-primary/80">{c.number}</span>
         </a>
       ))}
     </div>

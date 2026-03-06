@@ -16,10 +16,13 @@ const gridButtons: { icon: typeof BookOpen; label: string; id: DesktopApp }[] = 
 ];
 
 const DesktopHomeContent = ({ onOpenEvents, onOpenApp }: Props) => (
-  <div className="p-10 space-y-8 w-full">
-    <CountdownCard />
+  <div className="p-10 space-y-8 w-full flex flex-col items-center">
+    {/* By wrapping it in a w-full, the newly responsive CountdownCard will easily fill the available space beautifully */}
+    <div className="w-full">
+      <CountdownCard />
+    </div>
 
-    <div className="grid grid-cols-4 gap-6">
+    <div className="grid grid-cols-4 gap-6 w-full">
       {gridButtons.map(({ icon: Icon, label, id }) => (
         <motion.button
           key={label}
