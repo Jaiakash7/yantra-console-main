@@ -1,12 +1,11 @@
-import { motion } from "framer-motion";
 import { Radio, MapPin } from "lucide-react";
 
 const DesktopMapContent = () => (
   <div className="h-full flex flex-col">
     <div className="flex items-center gap-2 p-4 border-b border-border/50">
       <Radio className="w-4 h-4 text-primary animate-pulse" />
-      <span className="font-display text-[10px] tracking-widest text-primary">TRACKING TARGET</span>
-      <span className="font-mono text-[8px] text-muted-foreground ml-auto">13.0285°N, 80.2210°E</span>
+      <span className="font-display text-sm tracking-widest text-primary">TRACKING TARGET</span>
+      <span className="font-mono text-xs text-muted-foreground ml-auto">13.0285°N, 80.2210°E</span>
     </div>
     <div className="flex-1 relative">
       <iframe
@@ -16,17 +15,15 @@ const DesktopMapContent = () => (
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       />
-      {/* Radar overlay */}
       <div className="absolute inset-0 pointer-events-none border-2 border-primary/10 rounded-sm">
         <div className="absolute top-2 left-2 flex items-center gap-1">
-          <MapPin className="w-3 h-3 text-primary" />
-          <span className="text-[7px] font-mono text-primary bg-background/80 px-1 rounded">MSEC CAMPUS</span>
+          <MapPin className="w-3.5 h-3.5 text-primary" />
+          <span className="text-[9px] font-mono text-primary bg-background/80 px-1 rounded">MSEC CAMPUS</span>
         </div>
-        {/* Corner brackets */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/40" />
-        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/40" />
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary/40" />
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary/40" />
+        <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-primary/40" />
+        <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-primary/40" />
+        <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-primary/40" />
+        <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-primary/40" />
       </div>
     </div>
   </div>

@@ -1,49 +1,95 @@
 
 
-## Plan: Events Hub + Event Details System
+## Plan: Desktop Content Components Revamp
 
-Replace the current flat events list with a two-page system: an icon-grid Events Hub (`/events`) and individual Event Details pages (`/events/:id`).
+Scope: Only files inside `src/components/desktop/`. No changes to mobile pages, DesktopOS.tsx, DesktopLockScreen.tsx, or AppWindow.tsx.
 
 ---
 
-### New Files
+### 1. DesktopHomeContent.tsx — Expanded layout with larger typography
 
-**1. `src/data/eventsData.ts`** — Central data array
-- Each event: `id` (slug), `title`, `type` ('technical'|'non-technical'), `category` ('flagship'|'special'|'standard'|'none'), `icon` (Lucide component name), `duration`, `venue`, `teamSize`, `description`, `guidelines[]`
-- Technical (5): CAD Modeling with Autodesk Fusion 360 (flagship, `Cpu`), Paper Presentation (special, `FileText`), Stress Analysis using Ansys (standard, `Activity`), Split Muff Coupling Assembly (standard, `Wrench`), Retro Racers (standard, `Car`)
-- Non-Technical (4): Free Fire E-Sports Tournament (none, `Gamepad2`), Treasure Hunt (none, `MapPin`), Frame Flux (none, `Film`), Otaku Style (none, `Sparkles`)
-- Prize logic by category: flagship → ₹1500/₹1000/₹750, special → ₹1000/₹750/₹500, standard → ₹750/₹500/₹250, none → no prizes
-- Contacts array: Syed Nayem (9042818580), Senthil (9080191348), Mr. Chidambaram (9751894475)
+- Remove `max-w-lg` constraint, use full width with `p-10`
+- CountdownCard at top, then a horizontal layout: 4 grid buttons in a `grid-cols-4` row (not 2x2)
+- Icon sizes bumped to `w-14 h-14`, labels to `text-sm`
+- "EXPLORE EVENTS" button text to `text-lg`, padding `py-6`
+- Overall spacing `space-y-8`
 
-**2. `src/pages/EventsHub.tsx`** — The icon-grid hub (replaces `EventsPage.tsx`)
-- **Mobile**: Back arrow header. "TECHNICAL" section heading → `grid grid-cols-2` with first 4 events as square glassmorphic cards; 5th (flagship) spans `col-span-2` full-width at bottom. "NON-TECHNICAL" heading → `grid grid-cols-2` for 4 events.
-- **Desktop** (`lg:` classes): Expand to `lg:grid-cols-4` for both sections, icons spread horizontally.
-- Each card: dark glass (`bg-zinc-900/60 backdrop-blur-md border border-zinc-800`), large centered Lucide icon glowing in accent color, bold monospace title underneath. Clicking navigates to `/events/:id`.
-- BottomDock at bottom (mobile only).
+### 2. DesktopAboutContent.tsx — Wider horizontal card layout
 
-**3. `src/pages/EventDetails.tsx`** — Individual event detail page
-- Reads `:id` from URL params, looks up event in `eventsData`.
-- **Slide-in animation**: `initial={{ x: "100%" }} animate={{ x: 0 }}` transition.
-- **Mobile** (`flex-col`): Hero header (icon + title + type badge + specs row), Overview section, conditional Prize Podium (3-col gold/silver/bronze with category-based amounts — skip entirely for non-tech), Guidelines list, Contacts with green call buttons, Registration CTA pinned at bottom.
-- **Desktop** (`lg:flex-row`): Left fixed pane (hero + overview + CTA), right scrollable pane (guidelines + prizes).
-- **Prize Podium**: 3-column layout. Gold (🥇), Silver (🥈), Bronze (🥉). Values from category mapping. Only rendered if `type === 'technical'`.
-- **Registration CTA**: Full-width `bg-black border border-zinc-800` button, white monospace text "INITIALIZE REGISTRATION SEQUENCE", `hover:bg-zinc-900 shadow-[0_0_20px_rgba(74,144,226,0.3)]`.
+- Remove `max-w-lg`, use full width `p-10`
+- Logo size `w-36 h-36`
+- Cards in a `grid grid-cols-2 gap-6` layout instead of vertical stack
+- Section titles bumped to `text-sm`, body text to `text-base`
+- Icon sizes to `w-6 h-6`, padding `p-6`
 
-### Modified Files
+### 3. DesktopEventsContent.tsx — No-scroll single-screen grid with Register buttons
 
-**4. `src/App.tsx`**
-- Replace `EventsPage` import with `EventsHub` for `/events` route.
-- Add new route: `/events/:id` → `<Framed><EventDetails /></Framed>`.
+**Hub view (no selected event):**
+- Remove `overflow-y-auto`, use `h-full flex flex-col justify-center p-8`
+- Section headings bumped to `text-sm`
+- Technical: `grid-cols-5` single row for 5 events
+- Non-Technical: `grid-cols-4` single row for 4 events
+- Remove `aspect-square` from cards, use compact padding `p-5`
+- Icon size `w-10 h-10`, title text `text-[11px]`
+- Add a small "REGISTER" button below each card title (`text-[9px] font-mono bg-primary/10 border border-primary/30 text-primary px-3 py-1 rounded-md mt-2`)
 
-**5. `src/components/desktop/DesktopEventsContent.tsx`**
-- Rewrite to import from `eventsData.ts`. Display as a 4-column icon grid matching the hub aesthetic. Each card clickable — calls an `onOpenEventDetail?` callback or opens an internal detail view within the same window.
+**Detail view (selected event):**
+- Bump all text sizes: title `text-lg`, description `text-sm`, guidelines `text-sm`, labels `text-xs`
+- Prize podium amounts `text-base`, contact names `text-sm`
 
-**6. `src/components/desktop/DesktopOS.tsx`**
-- No structural changes needed; `DesktopEventsContent` update propagates automatically.
+### 4. PrizesContent.tsx — Sync data from mobile PrizesPage.tsx, expanded layout
 
-### Technical Notes
-- The `eventsData` array uses string icon names mapped to Lucide components via a lookup object to keep data serializable.
-- Mobile cards use `aspect-square` for square proportions; flagship card uses `col-span-2` with a wider aspect ratio.
-- Event detail page uses `useParams()` to resolve event ID.
-- All existing theme variables (gold primary, zinc backgrounds) are reused — no new CSS variables needed.
+- Keep the same 3 categories with identical prize amounts (CAD: ₹1500/1000/750, Paper: ₹1000/750/500, Standard: ₹750/500/250)
+- Total banner: `text-7xl` for amount
+- Category cards: larger `p-10`, title `text-lg`, subtitle `text-sm`
+- Podium emoji `text-4xl`, amounts `text-xl`
+- Benefits section: `text-sm` for items, `grid-cols-4` layout
+
+### 5. DesktopPrizeContent.tsx — Remove duplicate, redirect to PrizesContent
+
+- This file currently has stale/wrong prize data (₹10K, ₹6K, ₹3K). Replace its content entirely to match PrizesContent.tsx with the correct category-based prize structure and expanded typography. Use the same layout as PrizesContent.tsx since both serve desktop windows.
+
+### 6. PrizePoolWidget.tsx — Sync data with correct prize info
+
+- Replace stale data (CAD WARFARE ₹10K, etc.) with correct categories:
+  - CAD MODELING: ₹1,500
+  - PAPER PRESENTATION: ₹1,000  
+  - STANDARD EVENTS: ₹750
+- Update total to "TOTAL: ₹13,000+"
+- Bump text sizes: event names `text-xs`, amounts `text-xs`, header `text-[10px]`, total `text-[10px]`
+- Increase widget width from `w-56` to `w-64`
+
+### 7. DesktopInstructionContent.tsx — Expanded layout
+
+- Remove `max-w-lg`, use full width with `p-10`
+- Cards in `grid grid-cols-2 gap-6` instead of vertical stack
+- Title text `text-sm`, body text `text-base`, icons `w-6 h-6`, card padding `p-6`
+
+### 8. DesktopScheduleContent.tsx — Larger typography
+
+- Remove `max-w-2xl` constraint
+- Time text `text-lg`, title `text-base`, venue `text-xs`, type badge `text-[9px]`
+- Row padding `p-5`, gap `gap-6`
+
+### 9. DesktopGalleryContent.tsx — Larger cards and text
+
+- Padding `p-10`, gap `gap-6`
+- Icon size `w-14 h-14`, label text `text-xs`
+
+### 10. DesktopMapContent.tsx — Larger header text
+
+- Header label `text-sm`, coordinates `text-xs`
+- Corner brackets `w-6 h-6`, campus label `text-[9px]`
+
+### Files Modified (all inside `src/components/desktop/`)
+- DesktopHomeContent.tsx
+- DesktopAboutContent.tsx
+- DesktopEventsContent.tsx
+- PrizesContent.tsx
+- DesktopPrizeContent.tsx
+- PrizePoolWidget.tsx
+- DesktopInstructionContent.tsx
+- DesktopScheduleContent.tsx
+- DesktopGalleryContent.tsx
+- DesktopMapContent.tsx
 

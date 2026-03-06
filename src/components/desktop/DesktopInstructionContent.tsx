@@ -9,15 +9,15 @@ const instructions = [
 ];
 
 const DesktopInstructionContent = () => (
-  <div className="p-6 overflow-y-auto scrollbar-hide h-full">
-    <div className="max-w-lg mx-auto space-y-4">
+  <div className="p-10 overflow-y-auto scrollbar-hide h-full">
+    <div className="grid grid-cols-2 gap-6">
       {instructions.map((item, i) => (
-        <div key={i} className="p-4 rounded-lg border border-border/50 bg-card/30">
-          <div className="flex items-center gap-2 mb-2">
-            <item.icon className="w-4 h-4 text-primary" />
-            <span className="font-display text-[10px] tracking-widest text-primary">{item.title}</span>
+        <div key={i} className="p-6 rounded-lg border border-border/50 bg-card/30">
+          <div className="flex items-center gap-3 mb-3">
+            <item.icon className="w-6 h-6 text-primary" />
+            <span className="font-display text-sm tracking-widest text-primary">{item.title}</span>
           </div>
-          <p className="text-xs text-muted-foreground leading-relaxed">{item.text}</p>
+          <p className="text-base text-muted-foreground leading-relaxed">{item.text}</p>
         </div>
       ))}
     </div>

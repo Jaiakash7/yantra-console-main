@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Clock, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 const scheduleData = [
   { time: "09:00", title: "INAUGURATION CEREMONY", venue: "MAIN AUDITORIUM", type: "ceremony" },
@@ -13,21 +13,21 @@ const scheduleData = [
 ];
 
 const DesktopScheduleContent = () => (
-  <div className="p-6 overflow-y-auto scrollbar-hide h-full">
-    <div className="max-w-2xl mx-auto space-y-3">
+  <div className="p-8 overflow-y-auto scrollbar-hide h-full">
+    <div className="space-y-4">
       {scheduleData.map((item, i) => (
-        <motion.div key={i} className="flex gap-4 items-center p-3 rounded-lg border border-border/50 bg-card/30 hover:border-primary/30 transition-colors"
+        <motion.div key={i} className="flex gap-6 items-center p-5 rounded-lg border border-border/50 bg-card/30 hover:border-primary/30 transition-colors"
           initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }}>
-          <span className="font-mono text-sm text-primary font-bold w-16">{item.time}</span>
-          <div className="w-2 h-2 rounded-full border-2 border-primary bg-primary/20" />
+          <span className="font-mono text-lg text-primary font-bold w-20">{item.time}</span>
+          <div className="w-2.5 h-2.5 rounded-full border-2 border-primary bg-primary/20" />
           <div className="flex-1">
-            <span className="font-display text-xs tracking-wider text-foreground">{item.title}</span>
-            <div className="flex items-center gap-1 mt-0.5">
-              <MapPin className="w-3 h-3 text-muted-foreground" />
-              <span className="text-[9px] font-mono text-muted-foreground">{item.venue}</span>
+            <span className="font-display text-base tracking-wider text-foreground">{item.title}</span>
+            <div className="flex items-center gap-1.5 mt-1">
+              <MapPin className="w-3.5 h-3.5 text-muted-foreground" />
+              <span className="text-xs font-mono text-muted-foreground">{item.venue}</span>
             </div>
           </div>
-          <span className="text-[7px] font-display tracking-widest text-muted-foreground uppercase">{item.type}</span>
+          <span className="text-[9px] font-display tracking-widest text-muted-foreground uppercase">{item.type}</span>
         </motion.div>
       ))}
     </div>
