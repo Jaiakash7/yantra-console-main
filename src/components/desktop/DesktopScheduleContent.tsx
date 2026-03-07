@@ -1,35 +1,56 @@
 import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 
 const scheduleData = [
-  { time: "09:00", title: "INAUGURATION CEREMONY", venue: "MAIN AUDITORIUM", type: "ceremony" },
-  { time: "10:00", title: "TECHNICAL EVENTS BEGIN", venue: "LABS & HALLS", type: "tech" },
-  { time: "11:30", title: "WORKSHOP SESSION I", venue: "LAB-C3", type: "workshop" },
+  { time: "09:00", title: "INAUGURATION CEREMONY", venue: "CAD LAB", type: "ceremony" },
+  { time: "09:30", title: "PAPER PRESENTATION", venue: "CAD LAB: CONFERENCE HALL", type: "tech" },
+  { time: "09:30", title: "COMPONENT MESHING", venue: "MECH BLOCK 2ND FLOOR (S1)", type: "tech" },
+  { time: "09:30", title: "RAPID RUMBLE", venue: "MECH BLOCK 2ND FLOOR (S4)", type: "nontech" },
+  { time: "10:00", title: "FRAME FLUX", venue: "MECH BLOCK 2ND FLOOR (S2)", type: "nontech" },
+  { time: "11:00", title: "DYANAMICAD", venue: "CAD LAB", type: "tech" },
   { time: "13:00", title: "LUNCH BREAK", venue: "CANTEEN", type: "break" },
-  { time: "14:00", title: "NON-TECH EVENTS", venue: "OPEN GROUND", type: "nontech" },
-  { time: "15:30", title: "WORKSHOP SESSION II", venue: "SMART-LAB", type: "workshop" },
-  { time: "16:30", title: "PRIZE DISTRIBUTION", venue: "MAIN AUDITORIUM", type: "ceremony" },
-  { time: "17:30", title: "VALEDICTORY & CLOSE", venue: "MAIN AUDITORIUM", type: "ceremony" },
+  { time: "14:00", title: "BRAIN SPARKS", venue: "MECH BLOCK 2ND FLOOR (S1)", type: "tech" },
+  { time: "14:00", title: "CRICKET ARENA", venue: "MECH BLOCK (S4)", type: "nontech" },
+  { time: "14:00", title: "RETRO RACERS", venue: "MECH BLOCK 2ND FLOOR (S5)", type: "tech" },
+  { time: "14:00", title: "OTAKU CLASH", venue: "CAD LAB", type: "nontech" },
+  { time: "16:00", title: "PRIZE DISTRIBUTION & VALEDICTORY", venue: "CAD LAB", type: "ceremony" },
 ];
 
 const DesktopScheduleContent = () => (
-  <div className="p-8 overflow-y-auto scrollbar-hide h-full">
-    <div className="space-y-4">
-      {scheduleData.map((item, i) => (
-        <motion.div key={i} className="flex gap-6 items-center p-5 rounded-lg border border-border/50 bg-card/30 hover:border-primary/30 transition-colors"
-          initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }}>
-          <span className="font-mono text-lg text-primary font-bold w-20">{item.time}</span>
-          <div className="w-2.5 h-2.5 rounded-full border-2 border-primary bg-primary/20" />
-          <div className="flex-1">
-            <span className="font-display text-base tracking-wider text-foreground">{item.title}</span>
-            <div className="flex items-center gap-1.5 mt-1">
-              <MapPin className="w-3.5 h-3.5 text-muted-foreground" />
-              <span className="text-xs font-mono text-muted-foreground">{item.venue}</span>
+  <div className="h-full flex flex-col bg-background relative">
+    {/* Header */}
+    <div className="flex items-center gap-2 p-4 border-b border-border/50 bg-muted/10 sticky top-0 z-10">
+      <Clock className="w-4 h-4 text-primary animate-pulse" />
+      <span className="font-display text-sm tracking-widest text-primary">EVENT TIMELINE // MASTER LOG</span>
+    </div>
+
+    <div className="p-8 overflow-y-auto scrollbar-hide flex-1">
+      <div className="space-y-4 max-w-4xl mx-auto">
+        {scheduleData.map((item, i) => (
+          <motion.div 
+            key={i} 
+            className="flex gap-6 items-center p-5 rounded-lg border border-border/50 bg-card/30 hover:border-primary/40 hover:bg-card/60 transition-all cursor-default group"
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ delay: i * 0.04 }}
+          >
+            <span className="font-mono text-xl text-primary font-bold w-24 tracking-tight group-hover:scale-105 transition-transform origin-left">{item.time}</span>
+            <div className={`w-3 h-3 rounded-full border-2 ${item.type === 'break' ? 'border-muted-foreground bg-muted' : 'border-primary bg-primary/20 group-hover:shadow-[0_0_12px_rgba(var(--primary),0.6)] transition-shadow'}`} />
+            
+            <div className="flex-1">
+              <span className="font-display text-lg tracking-wider text-foreground group-hover:text-primary transition-colors">{item.title}</span>
+              <div className="flex items-center gap-2 mt-1.5">
+                <MapPin className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm font-mono text-muted-foreground uppercase">{item.venue}</span>
+              </div>
             </div>
-          </div>
-          <span className="text-[9px] font-display tracking-widest text-muted-foreground uppercase">{item.type}</span>
-        </motion.div>
-      ))}
+            
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] font-display tracking-widest text-muted-foreground uppercase border border-border/50 px-2 py-1 rounded bg-background/50">{item.type}</span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </div>
   </div>
 );

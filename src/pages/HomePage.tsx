@@ -125,8 +125,8 @@ const HomePage = () => {
             <div className="space-y-2">
               {[
                 { time: "09:00", label: "INAUGURATION" },
-                { time: "10:00", label: "TECH EVENTS" },
-                { time: "14:00", label: "NON-TECH EVENTS" },
+                { time: "9:30", label: "TECH EVENTS" },
+                { time: "11:00", label: "FLAGSHIP EVENT" },
               ].map((item) => (
                 <div key={item.time} className="flex items-center gap-3 px-3 py-2 rounded-lg border border-border/20 bg-muted/10">
                   <span className="font-mono text-[11px] text-primary font-bold">{item.time}</span>

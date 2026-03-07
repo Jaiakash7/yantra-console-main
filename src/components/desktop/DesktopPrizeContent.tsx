@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Trophy, Cpu, FileText, Wrench } from "lucide-react";
+import { Trophy, MonitorPlay, FileText, Wrench } from "lucide-react";
 
 const categories = [
   {
-    title: "CAD MODELING",
+    title: "DYANAMICAD",
     subtitle: "FLAGSHIP EVENT",
-    icon: Cpu,
-    first: "₹1,500",
+    icon: MonitorPlay,
+    first: "₹2000",
     second: "₹1,000",
     third: "₹750",
     glowBorder: "border-yellow-500/50 shadow-[0_0_20px_rgba(255,215,0,0.15)]",
@@ -15,18 +15,18 @@ const categories = [
     title: "PAPER PRESENTATION",
     subtitle: "SPECIALIZED EVENT",
     icon: FileText,
-    first: "₹1,000",
-    second: "₹750",
-    third: "₹500",
+    first: "₹1500",
+    second: "1000",
+    third: "₹750",
     glowBorder: "border-blue-500/40",
   },
   {
     title: "STANDARD TECHNICAL",
-    subtitle: "TRIVIA • ROCKETRY • MODEL MAKING",
+    subtitle: "QUIZ • MESHING • RACERS",
     icon: Wrench,
-    first: "₹750",
-    second: "₹500",
-    third: "₹250",
+    first: "₹1000",
+    second: "₹750",
+    third: "₹500",
     glowBorder: "border-zinc-700",
   },
 ];
@@ -44,10 +44,10 @@ const DesktopPrizeContent = () => (
         <Trophy className="w-10 h-10 text-primary" />
       </div>
       <span className="font-mono text-7xl text-primary font-bold drop-shadow-[0_2px_10px_rgba(234,179,8,0.3)]">
-        ₹13,000+
+        ₹14,000+
       </span>
       <p className="text-sm font-mono tracking-[0.4em] text-muted-foreground mt-4">
-        TOTAL PRIZE POOL // ALL EVENTS
+        TOTAL PRIZE POOL 
       </p>
     </motion.div>
 
@@ -100,10 +100,10 @@ const DesktopPrizeContent = () => (
       transition={{ delay: 0.8 }}
     >
       <span className="text-xs font-mono tracking-[0.3em] text-primary/80 font-semibold block mb-6 border-b border-zinc-800 pb-3">
-        ADDITIONAL PERKS & BENEFITS //
+        ADDITIONAL PERKS & BENEFITS 
       </span>
-      <ul className="grid grid-cols-4 gap-4">
-        {["Certificates for all participants", "Merit certificates for top 3", "Internship opportunities", "Goodies & swag kits"].map((t, i) => (
+      <ul className="grid grid-cols-3 gap-4">
+        {["Certificates for all participants", "Merit certificates for top 3", "Goodies & swag kits"].map((t, i) => (
           <li key={i} className="text-sm font-mono text-muted-foreground flex items-center gap-3 bg-black/20 p-4 rounded-xl border border-white/5">
             <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(234,179,8,0.8)]" />
             {t}

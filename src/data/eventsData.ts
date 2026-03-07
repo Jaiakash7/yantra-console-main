@@ -18,6 +18,7 @@ export interface EventData {
   description: string;
   guidelines: string[];
   coordinators: EventCoordinator[];
+  registrationLink: string; // Added the registration link property
 }
 
 export const eventsData: EventData[] = [
@@ -28,8 +29,8 @@ export const eventsData: EventData[] = [
     type: "technical",
     category: "flagship",
     icon: "MonitorPlay",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "11:00 AM - 1:00 PM",
+    venue: "CAD LAB",
     teamSize: "TEAM OF 2–3",
     description: "DyanamiCAD is a technical event that tests participants’ skills in mechanical engineering concepts, CAD modeling, and engineering analysis. Participants will work in teams to design and analyze a mechanical component using engineering tools.",
     guidelines: [
@@ -39,7 +40,11 @@ export const eventsData: EventData[] = [
       "All participants must wear their college ID card during the event.",
       "Participants must follow the instructions given by the coordinators, and the judges’ decision will be final."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Deepak M", phone: "9876543210" },
+      { name: "Naveen Kumar P", phone: "9012345678" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScbWvmv_iNmMG6SDW92TeNDsROu460A_PXQ-V4gy4vPC7vK_g/viewform?usp=dialog"
   },
   {
     id: "paper-presentation",
@@ -47,8 +52,8 @@ export const eventsData: EventData[] = [
     type: "technical",
     category: "special",
     icon: "FileText",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "9:30 AM - 12:00 PM",
+    venue: "CAD LAB: CONFERENCE HALL",
     teamSize: "TEAM OF 2–3",
     description: "The Paper Presentation event provides a platform for participants to present their ideas, research, and innovative concepts related to core engineering fields such as Electronics and Communication Engineering (ECE), Electrical and Electronics Engineering (EEE), and Mechanical Engineering (MECH).",
     guidelines: [
@@ -58,7 +63,11 @@ export const eventsData: EventData[] = [
       "Participants must be on time and follow the schedule given by the coordinators.",
       "Participants must cooperate with the event coordinators, and the judges’ decision will be final."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Venu Aravind S", phone: "9988776655" },
+      { name: "Sanjay Lakshmanan", phone: "9123456789" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfm74mUlXPLNGx70IgzwAVcbJ9JXrg0MxQBuaB1dtaKDEXc6A/viewform?usp=dialog"
   },
   {
     id: "brain-sparks",
@@ -66,9 +75,9 @@ export const eventsData: EventData[] = [
     type: "technical",
     category: "standard",
     icon: "Lightbulb",
-    duration: "TBD",
-    venue: "TBD",
-    teamSize: "INDIVIDUAL",
+    duration: "2:00 PM - 3:00 PM",
+    venue: "MECH BLOCK 2ND FLOOR (S1)",
+    teamSize: "INDIVIDUAL (SOLO)",
     description: "Brain Sparks is an exciting quiz event designed to test participants’ knowledge, logical thinking, and understanding of mechanical engineering concepts. The event challenges individuals to think quickly, solve technical questions, and demonstrate their knowledge.",
     guidelines: [
       "This event is only for solo participants.",
@@ -76,7 +85,11 @@ export const eventsData: EventData[] = [
       "Participants must follow the instructions given by the coordinators.",
       "Participants must cooperate with the event coordinators throughout the competition."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Syed Nayem", phone: "9876501234" },
+      { name: "Mohana Sundaram", phone: "9998887776" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScu5DmcZvwbzIVWKbGfJYao4ge62xIk3-qe9IxCH9qPse2zIQ/viewform?usp=dialog"
   },
   {
     id: "component-meshing",
@@ -84,8 +97,8 @@ export const eventsData: EventData[] = [
     type: "technical",
     category: "standard",
     icon: "Settings",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "9:30 AM - 11:00 AM",
+    venue: "MECH BLOCK 2ND FLOOR (S1)",
     teamSize: "TEAM OF 1–2",
     description: "Component Meshing is an engaging technical quiz event that tests participants’ knowledge of mechanical components and assembly concepts. The event challenges participants to identify different mechanical parts and understand how they fit together in a system.",
     guidelines: [
@@ -95,7 +108,11 @@ export const eventsData: EventData[] = [
       "Participants must cooperate with the event coordinators throughout the event.",
       "Judges’/coordinators’ decisions will be final."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Aadhitya Narayanan KS", phone: "9112233445" },
+      { name: "Abishek S", phone: "9445566778" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSceRNMSjDxW3CWCEZWJawej9K0kAn_7UijGorzVD8nhTtjpyQ/viewform?usp=dialog"
   },
   {
     id: "retro-racers",
@@ -103,8 +120,8 @@ export const eventsData: EventData[] = [
     type: "technical",
     category: "standard",
     icon: "Car",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "2:00 PM - 3:30 PM",
+    venue: "MECH BLOCK 2ND FLOOR (S5)",
     teamSize: "TEAM OF 2–3",
     description: "Retro Racers is an engaging event for automobile enthusiasts that focuses on vintage and classic cars. Participants will test their knowledge of automobiles in the first round and then receive a vintage car model to create a voiceover video explaining the car’s features.",
     guidelines: [
@@ -114,18 +131,22 @@ export const eventsData: EventData[] = [
       "Participants must follow instructions and cooperate with the coordinators.",
       "Judges’/coordinators’ decision will be final."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Hariharan A", phone: "9556677889" },
+      { name: "Arun B", phone: "9001122334" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeA7caPH6fpM-gS6Z5Tcmt534pHM5p6fL2wNIsgD5XbaaVtzw/viewform?usp=dialog"
   },
 
   // --- NON-TECHNICAL EVENTS ---
   {
     id: "cricket-arena",
-    title: "CRICKET ARENA",
+    title: "CRICKET ARENA / CRIC FORGE",
     type: "non-technical",
     category: "none",
     icon: "Target",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "2:00 PM - 2:30 PM",
+    venue: "MECH BLOCK (S4)",
     teamSize: "TEAM OF 2",
     description: "Cricket Arena is an exciting cricket-themed event designed to test participants’ knowledge of international cricket, famous players, records, and playing styles. The event combines guessing rounds, action-based challenges, and statistics-based questions.",
     guidelines: [
@@ -135,7 +156,11 @@ export const eventsData: EventData[] = [
       "Participants must cooperate with the event coordinators.",
       "Judges’/coordinators’ decisions will be final."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Senthil Ramanan V", phone: "9667788990" },
+      { name: "Rudhran S", phone: "9334455667" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeA_11fG0PH2-RTePXez9JIY3fuZQnNVteU14eAGsN4zvxmaQ/viewform?usp=dialog"
   },
   {
     id: "frame-flux",
@@ -143,8 +168,8 @@ export const eventsData: EventData[] = [
     type: "non-technical",
     category: "none",
     icon: "Film",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "10:00 AM - 12:00 PM",
+    venue: "MECH BLOCK 2ND FLOOR (S2)",
     teamSize: "TEAM OF 2",
     description: "Frame Flux is a fun and engaging non-technical event based on Kollywood movies and songs, designed to test participants’ observation skills, movie knowledge, and quick thinking. Participants will identify movie scenes, decode famous dialogues, and recognize songs.",
     guidelines: [
@@ -154,7 +179,11 @@ export const eventsData: EventData[] = [
       "Participants must cooperate with the event coordinators throughout the competition.",
       "Judges’/coordinators’ decisions will be final in all rounds."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Sriram Kannan", phone: "9778899001" },
+      { name: "Prajan", phone: "9223344556" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdFg55d5TWdlyILXBW3Avv0JGsFthCHCcY0UxPFSb8fxlz5eA/viewform?usp=dialog"
   },
   {
     id: "otaku-clash",
@@ -162,8 +191,8 @@ export const eventsData: EventData[] = [
     type: "non-technical",
     category: "none",
     icon: "Sparkles",
-    duration: "TBD",
-    venue: "TBD",
+    duration: "2:00 PM - 3:30 PM",
+    venue: "CAD LAB",
     teamSize: "TEAM OF 2",
     description: "Otaku Clash is an exciting anime-based fun event designed for participants who love anime and enjoy testing their knowledge of famous characters, scenes, and dialogues. The event challenges teams to identify visuals, answer interesting trivia, and recognize iconic anime dialogues.",
     guidelines: [
@@ -173,7 +202,11 @@ export const eventsData: EventData[] = [
       "Participants must cooperate with the event coordinators throughout the competition.",
       "Judges’/coordinators’ decisions will be final in all rounds."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Riyaz R", phone: "9889900112" },
+      { name: "Karthick P", phone: "9445566112" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSejrENiJCAO6G8bXEJXdvmtTyFqHBvh1tGD8PBTEbjoVw59kw/viewform?usp=dialog"
   },
   {
     id: "rapid-rumble",
@@ -181,8 +214,8 @@ export const eventsData: EventData[] = [
     type: "non-technical",
     category: "none",
     icon: "Zap",
-    duration: "TBD",
-    venue: "CLASSROOM",
+    duration: "9:30 AM - 11:30 AM",
+    venue: "MECH BLOCK 2ND FLOOR (S4)",
     teamSize: "INDIVIDUAL",
     description: "Rapid Rumble is an energetic and entertaining event consisting of a series of quick and fun mini-games conducted inside the classroom. Participants will compete in simple yet exciting challenges such as Flip the Bottle and other quick-fire tasks.",
     guidelines: [
@@ -192,20 +225,24 @@ export const eventsData: EventData[] = [
       "Fair play must be maintained during all games.",
       "Judges’/coordinators’ decisions will be final."
     ],
-    coordinators: []
+    coordinators: [
+      { name: "Aariya A", phone: "9990011223" },
+      { name: "Karthikayan K", phone: "9556677223" }
+    ],
+    registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfcRB_wiXHsMzznRI9hfeIG_0vT1PeUFMlInirUELBXV9SMVA/viewform?usp=dialog"
   }
 ];
 
 export const contacts = [
   { name: "SYED NAYEM", phone: "9042818580" },
   { name: "SENTHIL", phone: "9080191348" },
-  { name: "MR. CHIDAMBARAM", phone: "9751894475" },
+
 ];
 
 export const prizeMap: Record<string, { first: string; second: string; third: string }> = {
-  flagship: { first: "₹1,500", second: "₹1,000", third: "₹750" },
-  special: { first: "₹1,000", second: "₹750", third: "₹500" },
-  standard: { first: "₹750", second: "₹500", third: "₹250" },
+  flagship: { first: "₹2000", second: "₹1,000", third: "₹750" },
+  special: { first: "₹1500", second: "₹1,000", third: "₹750" },
+  standard: { first: "₹1000", second: "₹750", third: "₹500" },
 };
 
 export const techEvents = eventsData.filter((e) => e.type === "technical");

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { icons } from "lucide-react";
 import { Wrench, Gamepad2, ArrowLeft, Clock, MapPin, Users, Phone } from "lucide-react";
-import { techEvents, nonTechEvents, contacts, prizeMap, type EventData } from "@/data/eventsData";
+import { techEvents, nonTechEvents, prizeMap, type EventData } from "@/data/eventsData";
 
 const DesktopEventsContent = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
@@ -58,18 +58,21 @@ const DesktopEventsContent = () => {
               </div>
             </div>
             
-            {/* REGISTER BUTTON RIGHT AFTER GUIDELINES (No huge gap) */}
-            <motion.button
+            {/* Dynamic Registration Link */}
+            <motion.a
+              href={selectedEvent.registrationLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 ${
+              className={`w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 flex items-center justify-center ${
                 selectedEvent.type === "technical" 
-                  ? "bg-primary text-black hover:bg-primary/90 shadow-primary/20" 
-                  : "bg-orange-500 text-black hover:bg-orange-500/90 shadow-orange-500/20"
+                  ? "bg-primary text-black hover:bg-primary/90 shadow-[0_0_15px_rgba(255,215,0,0.2)]" 
+                  : "bg-orange-500 text-black hover:bg-orange-500/90 shadow-[0_0_15px_rgba(255,87,34,0.2)]"
               }`}
             >
-              REGISTER
-            </motion.button>
+              REGISTER NOW
+            </motion.a>
           </div>
 
           {/* --- RIGHT COLUMN (PRIZES & CONTACTS) --- */}
@@ -93,11 +96,15 @@ const DesktopEventsContent = () => {
               </div>
             )}
             <div>
-              <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">CONTACTS</span>
-              {contacts.map((c) => (
-                <div key={c.phone} className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-lg px-3 py-2 mb-2">
-                  <span className="text-sm font-mono text-foreground/80">{c.name}</span>
-                  <a href={`tel:${c.phone}`} className="w-7 h-7 rounded-full bg-green-600/20 border border-green-600/30 flex items-center justify-center">
+              <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">STUDENT COORDINATORS</span>
+              {/* Dynamic Coordinators Mapping */}
+              {selectedEvent.coordinators && selectedEvent.coordinators.map((c, idx) => (
+                <div key={idx} className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-lg px-3 py-2 mb-2">
+                  <div>
+                    <span className="text-sm font-mono text-foreground/80 block">{c.name}</span>
+                    <span className="text-xs font-mono text-muted-foreground">{c.phone}</span>
+                  </div>
+                  <a href={`tel:${c.phone}`} className="w-7 h-7 rounded-full bg-green-600/20 border border-green-600/30 flex items-center justify-center hover:bg-green-600/40 transition-colors">
                     <Phone className="w-3.5 h-3.5 text-green-400" />
                   </a>
                 </div>

@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 
 const contacts = [
-  { name: "SYED NAYEM", number: "9042818580" },
-  { name: "SENTHIL", number: "9080191348" },
-  { name: "MR. CHIDAMBARAM", number: "9751894475" },
+  { name: "SYED NAYEMUDEEN B", number: "9042818580" },
+  { name: "SENTHIL RAMANAN V", number: "9080191348" },
+
 ];
 
 const CommsWidget = () => (

@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Trophy } from "lucide-react";
 
 const prizes = [
-  { event: "CAD MODELING", amount: "₹1,500" },
-  { event: "PAPER PRESENTATION", amount: "₹1,000" },
-  { event: "STANDARD EVENTS", amount: "₹750" },
+  { event: "CAD MODELING", amount: "₹3,750" },
+  { event: "PAPER PRESENTATION", amount: "₹3,250" },
+  { event: "TECH EVENTS", amount: "₹2,250" },
 ];
 
 const PrizePoolWidget = () => (
@@ -27,7 +27,7 @@ const PrizePoolWidget = () => (
       ))}
     </div>
     <div className="mt-2 pt-2 border-t border-border/30 text-center">
-      <span className="text-[10px] font-mono text-muted-foreground">TOTAL: ₹13,000+</span>
+      <span className="text-[10px] font-mono text-muted-foreground">TOTAL: ₹14,000+</span>
     </div>
   </motion.div>
 );

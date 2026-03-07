@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Clock, MapPin, Users, Phone, Terminal } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { icons } from "lucide-react";
-import { eventsData, contacts, prizeMap } from "@/data/eventsData";
+import { eventsData, prizeMap } from "@/data/eventsData";
 import BottomDock from "@/components/BottomDock";
 
 const EventDetails = () => {
@@ -94,12 +94,12 @@ const EventDetails = () => {
           <GuidelinesSection guidelines={event.guidelines} />
         </div>
 
-        {/* Contacts */}
+        {/* Contacts (Dynamic based on event.coordinators) */}
         <div className="p-4 border-b border-border/50">
-          <span className="text-[8px] font-display tracking-[0.3em] text-muted-foreground block mb-3">POINTS OF CONTACT</span>
+          <span className="text-[8px] font-display tracking-[0.3em] text-muted-foreground block mb-3">STUDENT COORDINATORS</span>
           <div className="space-y-2">
-            {contacts.map((c) => (
-              <div key={c.phone} className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-lg px-3 py-2">
+            {event.coordinators && event.coordinators.map((c, idx) => (
+              <div key={idx} className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-lg px-3 py-2">
                 <div>
                   <span className="text-[10px] font-mono text-foreground/90 block">{c.name}</span>
                   <span className="text-[9px] font-mono text-muted-foreground">{c.phone}</span>
@@ -117,7 +117,7 @@ const EventDetails = () => {
 
         {/* Registration CTA — mobile */}
         <div className="p-4 lg:hidden">
-          <RegistrationCTA />
+          <RegistrationCTA link={event.registrationLink} />
         </div>
       </div>
 
@@ -125,7 +125,7 @@ const EventDetails = () => {
       <div className="hidden lg:flex flex-col flex-1 overflow-y-auto scrollbar-hide p-6 space-y-6">
         {prizes && <PrizePodium prizes={prizes} />}
         <GuidelinesSection guidelines={event.guidelines} />
-        <RegistrationCTA />
+        <RegistrationCTA link={event.registrationLink} />
       </div>
 
       <div className="lg:hidden">
@@ -135,15 +135,18 @@ const EventDetails = () => {
   );
 };
 
-const RegistrationCTA = () => (
-  <motion.button
+const RegistrationCTA = ({ link }: { link?: string }) => (
+  <motion.a
+    href={link || "#"}
+    target="_blank"
+    rel="noopener noreferrer"
     className="w-full py-4 bg-black border border-zinc-700 rounded-xl font-mono text-[11px] tracking-[0.2em] text-white font-bold flex items-center justify-center gap-3 hover:bg-zinc-900 transition-all active:scale-[0.98]"
     whileHover={{ boxShadow: "0 0 20px rgba(255,87,34,0.4)" }}
     whileTap={{ scale: 0.98 }}
   >
     <Terminal className="w-4 h-4" />
     INITIALIZE REGISTRATION SEQUENCE
-  </motion.button>
+  </motion.a>
 );
 
 const PrizePodium = ({ prizes }: { prizes: { first: string; second: string; third: string } }) => (

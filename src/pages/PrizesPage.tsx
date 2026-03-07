@@ -1,34 +1,34 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Trophy, Cpu, FileText, Wrench } from "lucide-react";
+import { ArrowLeft, Trophy, MonitorPlay, FileText, Wrench } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BottomDock from "@/components/BottomDock";
 
 const categories = [
-  {
-    title: "CAD MODELING",
+{
+    title: "DYANAMICAD",
     subtitle: "FLAGSHIP EVENT",
-    icon: Cpu,
-    first: "₹1,500",
+    icon: MonitorPlay,
+    first: "₹2000",
     second: "₹1,000",
     third: "₹750",
-    glowBorder: "border-yellow-500/50 shadow-[0_0_15px_rgba(255,215,0,0.15)]",
+    glowBorder: "border-yellow-500/50 shadow-[0_0_20px_rgba(255,215,0,0.15)]",
   },
   {
     title: "PAPER PRESENTATION",
     subtitle: "SPECIALIZED EVENT",
     icon: FileText,
-    first: "₹1,000",
-    second: "₹750",
-    third: "₹500",
+    first: "₹1500",
+    second: "1000",
+    third: "₹750",
     glowBorder: "border-blue-500/40",
   },
   {
     title: "STANDARD TECHNICAL",
-    subtitle: "TRIVIA • ROCKETRY • MODEL MAKING",
+    subtitle: "QUIZ • MESHING • RACERS",
     icon: Wrench,
-    first: "₹750",
-    second: "₹500",
-    third: "₹250",
+    first: "₹1000",
+    second: "₹750",
+    third: "₹500",
     glowBorder: "border-zinc-700",
   },
 ];
@@ -54,7 +54,7 @@ const PrizesPage = () => {
         </motion.button>
         <div className="flex items-center gap-2">
           <Trophy className="w-4 h-4 text-primary" />
-          <h1 className="font-mono text-xs tracking-[0.2em] text-primary font-bold">PRIZE_POOL.DWG</h1>
+          <h1 className="font-mono text-xs tracking-[0.2em] text-primary font-bold">PRIZE</h1>
         </div>
       </div>
 
@@ -62,8 +62,8 @@ const PrizesPage = () => {
       <div className="flex-1 overflow-y-auto scrollbar-hide p-4 pb-[90px]">
         {/* Total banner */}
         <div className="text-center mb-6">
-          <span className="font-mono text-3xl lg:text-4xl text-primary font-bold">₹13,000+</span>
-          <p className="text-[8px] font-mono tracking-[0.3em] text-muted-foreground mt-1">TOTAL PRIZE POOL // ALL EVENTS</p>
+          <span className="font-mono text-3xl lg:text-4xl text-primary font-bold">₹14,000+</span>
+          <p className="text-[8px] font-mono tracking-[0.3em] text-muted-foreground mt-1">TOTAL PRIZE POOL </p>
         </div>
 
         {/* Cards */}
@@ -109,7 +109,7 @@ const PrizesPage = () => {
         <div className="mt-6 p-4 rounded-xl border border-zinc-800 bg-zinc-900/30">
           <span className="text-[8px] font-mono tracking-[0.3em] text-muted-foreground block mb-3">ADDITIONAL BENEFITS</span>
           <ul className="space-y-2">
-            {["Certificates for all participants", "Merit certificates for top 3", "Internship opportunities", "Goodies & swag kits"].map((t, i) => (
+            {["Certificates for all participants", "Merit certificates for top 3", "Goodies & swag kits"].map((t, i) => (
               <li key={i} className="text-[10px] font-mono text-muted-foreground flex items-center gap-2">
                 <div className="w-1 h-1 rounded-full bg-primary" />
                 {t}
