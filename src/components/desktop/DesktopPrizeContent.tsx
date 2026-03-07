@@ -3,7 +3,7 @@ import { Trophy, MonitorPlay, FileText, Wrench } from "lucide-react";
 
 const categories = [
   {
-    title: "DYANAMICAD",
+    title: "DyanamiCAD",
     subtitle: "FLAGSHIP EVENT",
     icon: MonitorPlay,
     first: "₹2000",

@@ -41,8 +41,8 @@ export const eventsData: EventData[] = [
       "Participants must follow the instructions given by the coordinators, and the judges’ decision will be final."
     ],
     coordinators: [
-      { name: "Deepak M", phone: "9876543210" },
-      { name: "Naveen Kumar P", phone: "9012345678" }
+      { name: "Deepak M", phone: "7401220642" },
+      { name: "NaveenKumar P", phone: "6374840438" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScbWvmv_iNmMG6SDW92TeNDsROu460A_PXQ-V4gy4vPC7vK_g/viewform?usp=dialog"
   },
@@ -64,8 +64,8 @@ export const eventsData: EventData[] = [
       "Participants must cooperate with the event coordinators, and the judges’ decision will be final."
     ],
     coordinators: [
-      { name: "Venu Aravind S", phone: "9988776655" },
-      { name: "Sanjay Lakshmanan", phone: "9123456789" }
+      { name: "VenuAravind S", phone: "866747389"},
+      { name: "Sanjay Lakshmanan", phone: "6374009179" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfm74mUlXPLNGx70IgzwAVcbJ9JXrg0MxQBuaB1dtaKDEXc6A/viewform?usp=dialog"
   },
@@ -86,8 +86,8 @@ export const eventsData: EventData[] = [
       "Participants must cooperate with the event coordinators throughout the competition."
     ],
     coordinators: [
-      { name: "Syed Nayem", phone: "9876501234" },
-      { name: "Mohana Sundaram", phone: "9998887776" }
+      { name: "Syed Nayemudeen B ", phone: "9042818580" },
+      { name: "Mohana Sundaram", phone: "9710109701" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLScu5DmcZvwbzIVWKbGfJYao4ge62xIk3-qe9IxCH9qPse2zIQ/viewform?usp=dialog"
   },
@@ -109,8 +109,8 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decisions will be final."
     ],
     coordinators: [
-      { name: "Aadhitya Narayanan KS", phone: "9112233445" },
-      { name: "Abishek S", phone: "9445566778" }
+      { name: "Aadhitya Narayanan KS", phone: "8754153904" },
+      { name: "Abishek S", phone: "9384668834" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSceRNMSjDxW3CWCEZWJawej9K0kAn_7UijGorzVD8nhTtjpyQ/viewform?usp=dialog"
   },
@@ -132,8 +132,8 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decision will be final."
     ],
     coordinators: [
-      { name: "Hariharan A", phone: "9556677889" },
-      { name: "Arun B", phone: "9001122334" }
+      { name: "Hariharan A", phone: "9445338220" },
+      { name: "Arun B", phone: "8122728338" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeA7caPH6fpM-gS6Z5Tcmt534pHM5p6fL2wNIsgD5XbaaVtzw/viewform?usp=dialog"
   },
@@ -141,7 +141,7 @@ export const eventsData: EventData[] = [
   // --- NON-TECHNICAL EVENTS ---
   {
     id: "cricket-arena",
-    title: "CRICKET ARENA / CRIC FORGE",
+    title: "CRICKET ARENA",
     type: "non-technical",
     category: "none",
     icon: "Target",
@@ -157,14 +157,14 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decisions will be final."
     ],
     coordinators: [
-      { name: "Senthil Ramanan V", phone: "9667788990" },
-      { name: "Rudhran S", phone: "9334455667" }
+      { name: "Senthil Ramanan V", phone: "9080191348"},
+      { name: "Rudhran S", phone: "9498324617" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeA_11fG0PH2-RTePXez9JIY3fuZQnNVteU14eAGsN4zvxmaQ/viewform?usp=dialog"
   },
   {
     id: "frame-flux",
-    title: "FRAME FLUX",
+    title: "FRAME FLUX ( kollywood connection)",
     type: "non-technical",
     category: "none",
     icon: "Film",
@@ -180,8 +180,8 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decisions will be final in all rounds."
     ],
     coordinators: [
-      { name: "Sriram Kannan", phone: "9778899001" },
-      { name: "Prajan", phone: "9223344556" }
+      { name: "Sriram Kannan", phone: "7871759996" },
+      { name: "Prajan", phone: "7871759996" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdFg55d5TWdlyILXBW3Avv0JGsFthCHCcY0UxPFSb8fxlz5eA/viewform?usp=dialog"
   },
@@ -203,8 +203,8 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decisions will be final in all rounds."
     ],
     coordinators: [
-      { name: "Riyaz R", phone: "9889900112" },
-      { name: "Karthick P", phone: "9445566112" }
+      { name: "Riyaz R", phone: "8122770124" },
+      { name: "Karthick P", phone: "7305298694" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSejrENiJCAO6G8bXEJXdvmtTyFqHBvh1tGD8PBTEbjoVw59kw/viewform?usp=dialog"
   },
@@ -226,8 +226,8 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decisions will be final."
     ],
     coordinators: [
-      { name: "Aariya A", phone: "9990011223" },
-      { name: "Karthikayan K", phone: "9556677223" }
+      { name: "Aariya A", phone: "7338774313" },
+      { name: "Karthikayan K", phone: "7338774313" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfcRB_wiXHsMzznRI9hfeIG_0vT1PeUFMlInirUELBXV9SMVA/viewform?usp=dialog"
   }

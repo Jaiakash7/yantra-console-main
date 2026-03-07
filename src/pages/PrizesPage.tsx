@@ -5,7 +5,7 @@ import BottomDock from "@/components/BottomDock";
 
 const categories = [
 {
-    title: "DYANAMICAD",
+    title: "DyanamiCAD",
     subtitle: "FLAGSHIP EVENT",
     icon: MonitorPlay,
     first: "₹2000",

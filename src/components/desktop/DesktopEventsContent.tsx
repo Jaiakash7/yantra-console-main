@@ -44,7 +44,7 @@ const DesktopEventsContent = () => {
         <p className="text-sm text-foreground/70 mb-6 leading-relaxed">{selectedEvent.description}</p>
 
         <div className="grid grid-cols-2 gap-8">
-          {/* --- LEFT COLUMN (GUIDELINES & REGISTER BUTTON) --- */}
+          {/* --- LEFT COLUMN (GUIDELINES & CONDITIONAL REGISTER BUTTON) --- */}
           <div className="flex flex-col">
             <div>
               <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">GUIDELINES</span>
@@ -58,25 +58,23 @@ const DesktopEventsContent = () => {
               </div>
             </div>
             
-            {/* Dynamic Registration Link */}
-            <motion.a
-              href={selectedEvent.registrationLink || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className={`w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 flex items-center justify-center ${
-                selectedEvent.type === "technical" 
-                  ? "bg-primary text-black hover:bg-primary/90 shadow-[0_0_15px_rgba(255,215,0,0.2)]" 
-                  : "bg-orange-500 text-black hover:bg-orange-500/90 shadow-[0_0_15px_rgba(255,87,34,0.2)]"
-              }`}
-            >
-              REGISTER NOW
-            </motion.a>
+            {/* TECHNICAL EVENTS ONLY: Register Button (Left Column) */}
+            {selectedEvent.type === "technical" && (
+              <motion.a
+                href={selectedEvent.registrationLink || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="will-change-transform w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 flex items-center justify-center bg-primary text-black hover:bg-primary/90 shadow-[0_0_15px_rgba(255,215,0,0.2)]"
+              >
+                REGISTER NOW
+              </motion.a>
+            )}
           </div>
 
-          {/* --- RIGHT COLUMN (PRIZES & CONTACTS) --- */}
-          <div className="space-y-6">
+          {/* --- RIGHT COLUMN (PRIZES, CONTACTS & CONDITIONAL REGISTER BUTTON) --- */}
+          <div className="space-y-6 flex flex-col">
             {prizes && (
               <div>
                 <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">PRIZES</span>
@@ -95,9 +93,9 @@ const DesktopEventsContent = () => {
                 </div>
               </div>
             )}
+            
             <div>
               <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">STUDENT COORDINATORS</span>
-              {/* Dynamic Coordinators Mapping */}
               {selectedEvent.coordinators && selectedEvent.coordinators.map((c, idx) => (
                 <div key={idx} className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800 rounded-lg px-3 py-2 mb-2">
                   <div>
@@ -110,6 +108,20 @@ const DesktopEventsContent = () => {
                 </div>
               ))}
             </div>
+
+            {/* NON-TECHNICAL EVENTS ONLY: Register Button (Right Column) */}
+            {selectedEvent.type === "non-technical" && (
+              <motion.a
+                href={selectedEvent.registrationLink || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="will-change-transform w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 flex items-center justify-center bg-orange-500 text-black hover:bg-orange-500/90 shadow-[0_0_15px_rgba(255,87,34,0.2)]"
+              >
+                REGISTER NOW
+              </motion.a>
+            )}
           </div>
         </div>
       </motion.div>
@@ -158,10 +170,17 @@ const DesktopIconCard = ({ event, onClick }: { event: EventData; onClick: () => 
   return (
     <motion.button
       onClick={onClick}
-      className="bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-xl flex flex-col items-center justify-center gap-2 p-5 hover:border-primary/40 transition-colors"
+      className="will-change-transform relative bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-xl flex flex-col items-center justify-center gap-2 p-5 hover:border-primary/40 transition-colors"
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
     >
+      {/* FLAGSHIP BADGE */}
+      {event.category === "flagship" && (
+        <div className="absolute top-2 right-2 px-1.5 py-0.5 border border-primary/40 bg-primary/5 rounded-md text-[8px] font-mono tracking-widest text-primary/90 uppercase">
+          FLAGSHIP
+        </div>
+      )}
+      
       {LucideIcon && <LucideIcon className={`w-10 h-10 ${accentColor}`} strokeWidth={1.5} />}
       <span className="font-mono text-[11px] tracking-wider text-foreground/80 text-center leading-tight">{event.title}</span>
     </motion.button>

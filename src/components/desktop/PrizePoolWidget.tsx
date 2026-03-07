@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Trophy } from "lucide-react";
 
 const prizes = [
-  { event: "CAD MODELING", amount: "₹3,750" },
+  { event: "DyanamiCAD", amount: "₹3,750" },
   { event: "PAPER PRESENTATION", amount: "₹3,250" },
   { event: "TECH EVENTS", amount: "₹2,250" },
 ];

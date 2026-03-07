@@ -135,19 +135,32 @@ const EventDetails = () => {
   );
 };
 
-const RegistrationCTA = ({ link }: { link?: string }) => (
-  <motion.a
-    href={link || "#"}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="w-full py-4 bg-black border border-zinc-700 rounded-xl font-mono text-[11px] tracking-[0.2em] text-white font-bold flex items-center justify-center gap-3 hover:bg-zinc-900 transition-all active:scale-[0.98]"
-    whileHover={{ boxShadow: "0 0 20px rgba(255,87,34,0.4)" }}
-    whileTap={{ scale: 0.98 }}
-  >
-    <Terminal className="w-4 h-4" />
-    INITIALIZE REGISTRATION SEQUENCE
-  </motion.a>
-);
+const RegistrationCTA = ({ link }: { link?: string }) => {
+  const textContent = "INITIALIZE REGISTRATION SEQUENCE";
+  return (
+    <motion.a
+      href={link || "#"}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-full py-4 bg-black border border-zinc-700 rounded-xl font-mono text-[11px] tracking-[0.2em] text-white font-bold flex items-center justify-center transition-all active:scale-[0.98]"
+      whileHover={{ boxShadow: "0 0 20px rgba(255,87,34,0.4)" }}
+      whileTap={{ scale: 0.98 }}
+      style={{ boxShadow: "0 0 15px rgba(180, 50, 0, 0.3)" }} // Persistent molten embers glow
+    >
+      <span className="relative">
+        {/* Cyan Glitch Layer */}
+        <span className="absolute -left-[1px] -top-[1px] text-cyan-400 opacity-60 filter blur-[0.5px] whitespace-nowrap">{`>_ `}{textContent}</span>
+        {/* Red Glitch Layer */}
+        <span className="absolute left-[1px] top-[1px] text-red-500 opacity-60 filter blur-[0.5px] whitespace-nowrap">{`>_ `}{textContent}</span>
+        {/* Main White Text and Prompt */}
+        <span className="relative z-10 text-white flex items-center gap-2">
+          <span className="font-bold">{`>_`}</span>
+          {textContent}
+        </span>
+      </span>
+    </motion.a>
+  );
+};
 
 const PrizePodium = ({ prizes }: { prizes: { first: string; second: string; third: string } }) => (
   <div>

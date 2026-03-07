@@ -4,18 +4,18 @@ import { useNavigate } from "react-router-dom";
 import BottomDock from "@/components/BottomDock";
 
 const scheduleData = [
-  { time: "09:00", title: "INAUGURATION CEREMONY", venue: "CAD LAB", type: "ceremony" },
-  { time: "09:30", title: "PAPER PRESENTATION", venue: "CAD LAB: CONF. HALL", type: "tech" },
-  { time: "09:30", title: "COMPONENT MESHING", venue: "MECH BLOCK (S1)", type: "tech" },
-  { time: "09:30", title: "RAPID RUMBLE", venue: "MECH BLOCK (S4)", type: "nontech" },
-  { time: "10:00", title: "FRAME FLUX", venue: "MECH BLOCK (S2)", type: "nontech" },
-  { time: "11:00", title: "DYANAMICAD", venue: "CAD LAB", type: "tech" },
-  { time: "13:00", title: "LUNCH BREAK", venue: "CANTEEN", type: "break" },
-  { time: "14:00", title: "BRAIN SPARKS", venue: "MECH BLOCK (S1)", type: "tech" },
-  { time: "14:00", title: "CRICKET ARENA", venue: "MECH BLOCK (S4)", type: "nontech" },
-  { time: "14:00", title: "RETRO RACERS", venue: "MECH BLOCK (S5)", type: "tech" },
-  { time: "14:00", title: "OTAKU CLASH", venue: "CAD LAB", type: "nontech" },
-  { time: "16:00", title: "PRIZE DISTRIBUTION", venue: "CAD LAB", type: "ceremony" },
+  { time: "09:00 AM", title: "INAUGURATION CEREMONY", venue: "MAIN AUDITORIUM", type: "ceremony" },
+  { time: "09:30 AM", title: "PAPER PRESENTATION", venue: "CAD LAB: CONF. HALL", type: "tech" },
+  { time: "09:30 AM", title: "COMPONENT MESHING", venue: "MECH BLOCK (S1)", type: "tech" },
+  { time: "09:30 AM", title: "RAPID RUMBLE", venue: "MECH BLOCK (S4)", type: "nontech" },
+  { time: "10:00 AM", title: "FRAME FLUX", venue: "MECH BLOCK (S2)", type: "nontech" },
+  { time: "11:00 AM", title: "DYANAMICAD", venue: "CAD LAB", type: "tech" },
+  { time: "01:00 PM", title: "LUNCH BREAK", venue: "CANTEEN", type: "break" },
+  { time: "02:00 PM", title: "BRAIN SPARKS", venue: "MECH BLOCK (S1)", type: "tech" },
+  { time: "02:00 PM", title: "CRICKET ARENA", venue: "MECH BLOCK (S4)", type: "nontech" },
+  { time: "02:00 PM", title: "RETRO RACERS", venue: "MECH BLOCK (S5)", type: "tech" },
+  { time: "02:00 PM", title: "OTAKU CLASH", venue: "CAD LAB", type: "nontech" },
+  { time: "04:00 PM", title: "PRIZE DISTRIBUTION", venue: "MAIN AUDITORIUM", type: "ceremony" },
 ];
 
 const SchedulePage = () => {
@@ -36,7 +36,7 @@ const SchedulePage = () => {
           <h1 className="font-display text-xs tracking-[0.2em] text-primary font-bold">
             SYSTEM SCHEDULE
           </h1>
-          <span className="text-[8px] font-mono text-muted-foreground"> TIMELINE</span>
+          <span className="text-[8px] font-mono text-muted-foreground">// TIMELINE</span>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ const SchedulePage = () => {
                 </div>
                 <div className="flex-1 p-3 rounded-lg border border-border/50 bg-card/50 hover:border-primary/30 transition-colors">
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[11px] text-primary font-bold bg-primary/10 px-1.5 py-0.5 rounded">{item.time}</span>
+                    <span className="font-mono text-[11px] text-primary font-bold bg-primary/10 px-1.5 py-0.5 rounded whitespace-nowrap">{item.time}</span>
                     <span className="text-[8px] font-display tracking-widest text-muted-foreground uppercase">
                       {item.type}
                     </span>
