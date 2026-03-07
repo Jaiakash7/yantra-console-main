@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Info, ImageIcon, Trophy, Rocket, Phone, Shield, Clock, ChevronRight } from "lucide-react";
+import poorvikaLogo from "@/assets/poorvika-logo.png";
 import { useNavigate } from "react-router-dom";
 import CountdownCard from "@/components/CountdownCard";
 import DynamicIsland from "@/components/DynamicIsland";
@@ -14,9 +15,8 @@ const gridButtons = [
 ];
 
 const contacts = [
-  { name: "SYED NAYEM", number: "9042818580", status: "ONLINE" },
-  { name: "SENTHIL", number: "9080191348", status: "ONLINE" },
-  { name: "MR. CHIDAMBARAM", number: "9751894475", status: "ONLINE" },
+  { name: "SYED NAYEMUDEEN B", number: "9042818580", status: "ONLINE" },
+  { name: "SENTHIL RAMANAN V", number: "9080191348", status: "ONLINE" },
 ];
 
 const HomePage = () => {
@@ -35,19 +35,20 @@ const HomePage = () => {
   }, [page]);
 
   return (
- <div className="flex flex-col h-full relative">
+    <div className="flex flex-col h-full relative">
       <div className="px-4 pt-2">
-        <DynamicIsland />
+        <DynamicIsland activePage={page} />
       </div>
 
       {/* Page indicators */}
       <div className="flex justify-center gap-1.5 py-2">
         {[0, 1].map((i) => (
-          <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${
-            page === i ? "bg-primary w-4" : "bg-muted-foreground/30"
+          <div key={i} className={`h-1.5 rounded-full transition-all duration-300 ${
+            page === i ? "bg-primary w-4" : "bg-muted-foreground/20 w-1.5"
           }`} />
         ))}
       </div>
+
       {/* Swipe hint — only visible on page 0 */}
       {page === 0 && (
         <motion.div
@@ -153,15 +154,11 @@ const HomePage = () => {
               <span className="font-display text-[9px] tracking-[0.3em] text-primary">TITLE SPONSOR // DATAPAD</span>
             </div>
             <div className="flex flex-col items-center justify-center py-8 border border-border/30 rounded-lg bg-muted/10">
-              <div className="w-20 h-20 rounded-xl border-2 border-dashed border-primary/30 flex items-center justify-center mb-4">
-                <span className="text-[10px] font-mono text-muted-foreground">LOGO</span>
+              <div className="w-20 h-20 rounded-xl border-2 border-primary/30 flex items-center justify-center mb-4 overflow-hidden">
+                <img src={poorvikaLogo} alt="Poorvika" className="w-full h-full object-contain p-1" />
               </div>
-              <span className="font-display text-sm tracking-[0.3em] text-primary font-bold mb-1">SPONSOR NAME</span>
+              <span className="font-display text-sm tracking-[0.3em] text-primary font-bold mb-1">POORVIKA</span>
               <span className="text-[8px] font-mono text-muted-foreground">PLATINUM PARTNER // YANTRA 2K26</span>
-            </div>
-            <div className="mt-3 flex justify-between text-[7px] font-mono text-muted-foreground/50">
-              <span>CLEARANCE: LEVEL-5</span>
-              <span>STATUS: CONFIRMED</span>
             </div>
           </div>
 
@@ -169,7 +166,7 @@ const HomePage = () => {
           <div className="rounded-xl border border-border/50 bg-card/50 p-4">
             <div className="flex items-center gap-2 mb-4">
               <Phone className="w-4 h-4 text-primary" />
-              <span className="font-display text-[9px] tracking-[0.3em] text-primary">COMMS ARRAY</span>
+              <span className="font-display text-[9px] tracking-[0.3em] text-primary">CONTACT</span>
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse ml-auto" />
             </div>
             <div className="space-y-2">
@@ -193,9 +190,6 @@ const HomePage = () => {
                   </div>
                 </motion.a>
               ))}
-            </div>
-            <div className="mt-3 text-[7px] font-mono text-muted-foreground/40 text-center">
-              EMERGENCY SWITCHBOARD // YANTRA OPS
             </div>
           </div>
           

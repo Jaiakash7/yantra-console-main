@@ -1,19 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Building2 } from "lucide-react";
-
-const sponsors = [
-  { name: "ACME INDUSTRIES", tier: "PLATINUM" },
-  { name: "MECHWORKS LTD", tier: "GOLD" },
-  { name: "STEELFORGE CO", tier: "GOLD" },
-  { name: "AUTOBOT SYSTEMS", tier: "SILVER" },
-  { name: "ENGITECH SOLUTIONS", tier: "SILVER" },
-];
-
-const tierColors: Record<string, string> = {
-  PLATINUM: "text-primary",
-  GOLD: "text-primary/80",
-  SILVER: "text-muted-foreground",
-};
+import { X, Award } from "lucide-react";
+import poorvikaLogo from "@/assets/poorvika-logo.png";
 
 interface Props {
   open: boolean;
@@ -45,18 +32,19 @@ const SponsorsSheet = ({ open, onClose }: Props) => (
           <div className="w-10 h-1 rounded-full bg-muted-foreground/30 mx-auto mb-4" />
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Building2 className="w-4 h-4 text-primary" />
-              <span className="font-display text-xs tracking-[0.2em] text-primary font-bold">SPONSORS</span>
+              <Award className="w-4 h-4 text-primary" />
+              <span className="font-display text-xs tracking-[0.2em] text-primary font-bold">TITLE SPONSOR</span>
             </div>
             <button onClick={onClose}><X className="w-4 h-4 text-muted-foreground" /></button>
           </div>
-          <div className="space-y-3">
-            {sponsors.map((s) => (
-              <div key={s.name} className="flex items-center justify-between p-3 mechanical-border rounded-lg">
-                <span className="text-[10px] font-mono text-secondary-foreground">{s.name}</span>
-                <span className={`text-[8px] font-display tracking-wider ${tierColors[s.tier]}`}>{s.tier}</span>
-              </div>
-            ))}
+          <div className="flex flex-col items-center gap-4 py-4">
+            <div className="mechanical-border rounded-xl p-4 bg-background/50">
+              <img src={poorvikaLogo} alt="Poorvika" className="w-32 h-32 object-contain rounded-lg" />
+            </div>
+            <div className="text-center space-y-1">
+              <h3 className="font-display text-sm tracking-[0.15em] text-foreground font-bold">POORVIKA</h3>
+              <span className="text-[9px] font-display tracking-[0.2em] text-primary/80">TITLE SPONSOR</span>
+            </div>
           </div>
         </motion.div>
       </>

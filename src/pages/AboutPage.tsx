@@ -8,7 +8,8 @@ const AboutPage = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col h-full">
-      <div className="flex-1 overflow-y-auto scrollbar-hide p-4">
+      <div className="flex-1 overflow-y-auto scrollbar-hide p-4 pb-24">
+
         <div className="flex items-center gap-3 mb-4">
           <motion.button onClick={() => navigate("/home")} whileTap={{ scale: 0.9 }}
             className="w-8 h-8 rounded-full border border-border flex items-center justify-center">

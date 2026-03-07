@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import yantraLogo from "@/assets/yantra-logo.jpeg";
 
-const DynamicIsland = () => {
+interface DynamicIslandProps {
+  activePage?: number;
+}
+
+const DynamicIsland = ({ activePage = 0 }: DynamicIslandProps) => {
   return (
     <motion.div
-      className="mx-auto flex items-center gap-3 bg-oil border border-border rounded-2xl px-4 py-2 max-w-[280px]"
+      className="mx-auto flex items-center gap-3 bg-oil border border-border rounded-2xl px-4 py-2 max-w-[260px] mr-12"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -23,8 +27,8 @@ const DynamicIsland = () => {
         </span>
       </div>
       <div className="ml-auto flex gap-1">
-        <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-        <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+        <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${activePage === 0 ? "bg-green-500" : "bg-primary/50"}`} />
+        <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${activePage === 1 ? "bg-green-500" : "bg-primary/50"}`} />
       </div>
     </motion.div>
   );

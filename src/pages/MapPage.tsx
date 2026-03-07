@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, MapPin, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const MapPage = () => {
@@ -27,21 +27,43 @@ const MapPage = () => {
         </div>
       </div>
 
+      {/* Location Details Block */}
+      <div className="p-4 border-b border-border/20 bg-muted/5">
+        <h2 className="font-display text-sm tracking-widest text-primary mb-1">MEENAKSHI SUNDARARAJAN ENGINEERING COLLEGE</h2>
+        <p className="font-mono text-[9px] text-muted-foreground mb-3 leading-relaxed">
+          363, Arcot Road, Kodambakkam<br />
+          Chennai, Tamil Nadu 600024
+        </p>
+        <motion.a
+          href="https://maps.google.com/?q=Meenakshi+Sundararajan+Engineering+College+Chennai"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileTap={{ scale: 0.97 }}
+          className="w-full flex items-center justify-center gap-2 py-2.5 rounded border border-primary/30 bg-primary/10 text-primary text-[10px] font-display tracking-widest"
+        >
+          <MapPin className="w-3 h-3" />
+          GET DIRECTIONS
+          <ExternalLink className="w-3 h-3 ml-1" />
+        </motion.a>
+      </div>
+
       {/* Google Maps iframe */}
-      <div className="flex-1 relative">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8252882765095!2d80.21847!3d13.0285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267100ff3e1d9%3A0x41d3e4c0e0f5dd47!2sMeenakshi%20Sundararajan%20Engineering%20College!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-          className="w-full h-full border-0"
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          style={{ filter: "invert(0.9) hue-rotate(180deg) saturate(0.3) brightness(0.7)" }}
-        />
-        {/* Radar overlay */}
-        <div className="absolute inset-0 pointer-events-none border border-primary/10">
-          <div className="absolute top-2 left-2 text-[7px] font-mono text-primary/40">LAT: 13.0285°N</div>
-          <div className="absolute top-2 right-2 text-[7px] font-mono text-primary/40">LON: 80.2210°E</div>
-          <div className="absolute bottom-2 left-2 text-[7px] font-mono text-primary/40">ZOOM: 17x</div>
+      <div className="flex-1 relative p-4 pb-6">
+        <div className="w-full h-full rounded-xl border-2 border-border/50 overflow-hidden relative shadow-inner">
+          <iframe
+            src="https://maps.google.com/maps?q=Meenakshi+Sundararajan+Engineering+College,+Chennai&t=&z=17&ie=UTF8&iwloc=&output=embed"
+            className="w-full h-full border-0 absolute inset-0"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            style={{ filter: "invert(0.9) hue-rotate(180deg) saturate(0.3) brightness(0.7)" }}
+          />
+          {/* Radar overlay */}
+          <div className="absolute inset-0 pointer-events-none border border-primary/10">
+            <div className="absolute top-2 left-2 text-[7px] font-mono text-primary/40 bg-background/50 px-1 rounded backdrop-blur-sm">LAT: 13.0526°N</div>
+            <div className="absolute top-2 right-2 text-[7px] font-mono text-primary/40 bg-background/50 px-1 rounded backdrop-blur-sm">LON: 80.2212°E</div>
+            <div className="absolute bottom-2 left-2 text-[7px] font-mono text-primary/40 bg-background/50 px-1 rounded backdrop-blur-sm">ZOOM: 17x</div>
+          </div>
         </div>
       </div>
     </div>

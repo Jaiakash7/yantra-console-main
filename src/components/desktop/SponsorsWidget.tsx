@@ -1,11 +1,6 @@
 import { motion } from "framer-motion";
-import { Building2 } from "lucide-react";
-
-const sponsors = [
-  { name: "ACME INDUSTRIES", tier: "PLATINUM" },
-  { name: "MECHWORKS LTD", tier: "GOLD" },
-  { name: "STEELFORGE CO", tier: "GOLD" },
-];
+import { Award } from "lucide-react";
+import poorvikaLogo from "@/assets/poorvika-logo.png";
 
 const SponsorsWidget = () => (
   <motion.div
@@ -15,16 +10,12 @@ const SponsorsWidget = () => (
     transition={{ delay: 0.8 }}
   >
     <div className="flex items-center gap-2 mb-3">
-      <Building2 className="w-3 h-3 text-primary" />
-      <span className="text-[8px] font-display tracking-[0.2em] text-primary/80">SPONSORS</span>
+      <Award className="w-3 h-3 text-primary" />
+      <span className="text-[8px] font-display tracking-[0.2em] text-primary/80">TITLE SPONSOR</span>
     </div>
-    <div className="space-y-2">
-      {sponsors.map((s) => (
-        <div key={s.name} className="flex items-center justify-between">
-          <span className="text-[9px] font-mono text-secondary-foreground/70">{s.name}</span>
-          <span className="text-[7px] font-display tracking-wider text-primary/60">{s.tier}</span>
-        </div>
-      ))}
+    <div className="flex items-center gap-3">
+      <img src={poorvikaLogo} alt="Poorvika" className="w-10 h-10 object-contain rounded" />
+      <span className="text-[10px] font-mono text-secondary-foreground/90">POORVIKA</span>
     </div>
   </motion.div>
 );
