@@ -16,7 +16,7 @@ import GalleryPage from "./pages/GalleryPage";
 import PrizePage from "./pages/PrizePage";
 import PrizesPage from "./pages/PrizesPage";
 import NotFound from "./pages/NotFound";
-
+import { Analytics } from "@vercel/analytics/next"
 const queryClient = new QueryClient();
 
 const Framed = ({ children }: { children: React.ReactNode }) => (
