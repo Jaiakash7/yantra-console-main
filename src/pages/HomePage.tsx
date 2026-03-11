@@ -58,8 +58,8 @@ const HomePage = () => {
           transition={{ x: { repeat: Infinity, duration: 1.2, ease: "easeInOut" }, opacity: { duration: 0.5 } }}
           exit={{ opacity: 0 }}
         >
-          <ChevronRight className="w-5 h-5 text-primary/60" />
-          <span className="text-[7px] font-mono text-muted-foreground/60 tracking-wider">SWIPE</span>
+          <ChevronRight className="w-8 h-8 text-primary/60" />
+          <span className="text-[10px] font-mono text-muted-foreground/60 tracking-wider">SWIPE</span>
         </motion.div>
       )}
 

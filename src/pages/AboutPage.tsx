@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Cpu, Users, Award, Building } from "lucide-react";
+import { ArrowLeft, Cpu, Users, Award, Building, Code } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BottomDock from "@/components/BottomDock";
 import yantraLogo from "@/assets/yantra-logo.jpeg";
@@ -62,6 +62,25 @@ const AboutPage = () => {
             </p>
           </div>
         </div>
+
+        {/* Developer Credit Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ delay: 0.4 }}
+          className="mt-10 mb-2 flex flex-col items-center justify-center space-y-1.5"
+        >
+          <div className="flex items-center gap-2 text-primary/60">
+            <Code className="w-3.5 h-3.5" />
+            <span className="font-display text-[8px] tracking-[0.3em]">SYSTEM ARCHITECT</span>
+          </div>
+          <div className="px-4 py-2 rounded-full border border-border/40 bg-card/30">
+            <p className="text-[10px] font-mono text-muted-foreground">
+              Developer: <span className="text-primary font-bold tracking-wider">JAIAKASH.R</span>
+            </p>
+          </div>
+        </motion.div>
+
       </div>
       <BottomDock />
     </div>
