@@ -58,9 +58,19 @@
 }
 
 @layer base {
+  html, body, #root {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground font-mono;
     font-family: 'JetBrains Mono', monospace;

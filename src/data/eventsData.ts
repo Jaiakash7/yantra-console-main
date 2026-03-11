@@ -110,7 +110,7 @@ export const eventsData: EventData[] = [
     ],
     coordinators: [
       { name: "Aadhitya Narayanan KS", phone: "8754153904" },
-      { name: "Abishek S", phone: "9384668834" }
+      { name: "Sommer", phone: "8610306857" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSceRNMSjDxW3CWCEZWJawej9K0kAn_7UijGorzVD8nhTtjpyQ/viewform?usp=dialog"
   },
@@ -181,7 +181,7 @@ export const eventsData: EventData[] = [
     ],
     coordinators: [
       { name: "Sriram Kannan", phone: "7871759996" },
-      { name: "Prajan", phone: "7871759996" }
+      { name: "Prajan", phone: "7824008565" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSdFg55d5TWdlyILXBW3Avv0JGsFthCHCcY0UxPFSb8fxlz5eA/viewform?usp=dialog"
   },
@@ -226,8 +226,8 @@ export const eventsData: EventData[] = [
       "Judges’/coordinators’ decisions will be final."
     ],
     coordinators: [
-      { name: "Aariya A", phone: "7338774313" },
-      { name: "Karthikayan K", phone: "7338774313" }
+      { name: "Abishek", phone: "9384668834" },
+      { name: "Karthikayan K", phone: "8939058717" }
     ],
     registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfcRB_wiXHsMzznRI9hfeIG_0vT1PeUFMlInirUELBXV9SMVA/viewform?usp=dialog"
   }
