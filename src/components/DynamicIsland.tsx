@@ -8,7 +8,8 @@ interface DynamicIslandProps {
 const DynamicIsland = ({ activePage = 0 }: DynamicIslandProps) => {
   return (
     <motion.div
-      className="mx-auto flex items-center gap-3 bg-oil border border-border rounded-2xl px-4 py-2 max-w-[260px] mr-12"
+      // Removed "mr-12" from the end of this class string
+      className="mx-auto flex items-center gap-3 bg-oil border border-border rounded-2xl px-4 py-2 max-w-[260px]"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
