@@ -29,7 +29,7 @@ export const eventsData: EventData[] = [
     type: "technical",
     category: "flagship",
     icon: "MonitorPlay",
-    duration: "11:00 AM - 1:00 PM",
+    duration: "10:00 AM - 1:00 PM",
     venue: "CAD LAB",
     teamSize: "TEAM OF 2–3",
     description: "DyanamiCAD is a technical event that tests participants’ skills in mechanical engineering concepts, CAD modeling, and engineering analysis. Participants will work in teams to design and analyze a mechanical component using engineering tools.",
