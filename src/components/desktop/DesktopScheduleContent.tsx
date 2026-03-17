@@ -7,7 +7,7 @@ const scheduleData = [
   { time: "09:30 AM", title: "COMPONENT MESHING", venue: "MECH BLOCK 2ND FLOOR (S1)", type: "tech" },
   { time: "09:30 AM", title: "RAPID RUMBLE", venue: "MECH BLOCK 2ND FLOOR (S4)", type: "nontech" },
   { time: "10:00 AM", title: "FRAME FLUX", venue: "MECH BLOCK 2ND FLOOR (S2)", type: "nontech" },
-  { time: "11:00 AM", title: "DYANAMICAD", venue: "CAD LAB", type: "tech" },
+  { time: "10:00 AM", title: "DYANAMICAD", venue: "CAD LAB", type: "tech" },
   { time: "01:00 PM", title: "LUNCH BREAK", venue: "CANTEEN", type: "break" },
   { time: "02:00 PM", title: "BRAIN SPARKS", venue: "MECH BLOCK 2ND FLOOR (S1)", type: "tech" },
   { time: "02:00 PM", title: "CRICKET ARENA", venue: "MECH BLOCK (S4)", type: "nontech" },

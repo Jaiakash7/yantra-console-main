@@ -42,7 +42,7 @@ const SponsorsSheet = ({ open, onClose }: Props) => (
               <img src={poorvikaLogo} alt="Poorvika" className="w-32 h-32 object-contain rounded-lg" />
             </div>
             <div className="text-center space-y-1">
-              <h3 className="font-display text-sm tracking-[0.15em] text-foreground font-bold">POORVIKA</h3>
+              <h3 className="font-display text-sm tracking-[0.15em] text-foreground font-bold">RAJAMS</h3>
               <span className="text-[9px] font-display tracking-[0.2em] text-primary/80">TITLE SPONSOR</span>
             </div>
           </div>

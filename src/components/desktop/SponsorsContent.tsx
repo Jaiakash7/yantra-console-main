@@ -12,7 +12,7 @@ const SponsorsContent = () => (
         <img src={poorvikaLogo} alt="Poorvika" className="w-40 h-40 object-contain rounded-lg" />
       </div>
       <div className="text-center space-y-1.5">
-        <h3 className="font-display text-base tracking-[0.15em] text-foreground font-bold">POORVIKA</h3>
+        <h3 className="font-display text-base tracking-[0.15em] text-foreground font-bold">RAJAMS</h3>
         <span className="inline-block px-3 py-1 rounded-full text-[9px] font-display tracking-[0.2em] text-primary bg-primary/10 border border-primary/20">
           TITLE SPONSOR
         </span>

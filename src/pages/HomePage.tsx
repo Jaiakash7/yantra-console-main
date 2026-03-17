@@ -157,7 +157,7 @@ const HomePage = () => {
               <div className="w-20 h-20 rounded-xl border-2 border-primary/30 flex items-center justify-center mb-4 overflow-hidden">
                 <img src={poorvikaLogo} alt="Poorvika" className="w-full h-full object-contain p-1" />
               </div>
-              <span className="font-display text-sm tracking-[0.3em] text-primary font-bold mb-1">POORVIKA</span>
+              <span className="font-display text-sm tracking-[0.3em] text-primary font-bold mb-1">RAJAMS</span>
               <span className="text-[8px] font-mono text-muted-foreground">PLATINUM PARTNER // YANTRA 2K26</span>
             </div>
           </div>
