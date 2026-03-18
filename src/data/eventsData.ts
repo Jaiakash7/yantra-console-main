@@ -18,7 +18,7 @@ export interface EventData {
   description: string;
   guidelines: string[];
   coordinators: EventCoordinator[];
-  registrationLink: string; // Added the registration link property
+  
 }
 
 export const eventsData: EventData[] = [
@@ -44,7 +44,6 @@ export const eventsData: EventData[] = [
       { name: "Deepak M", phone: "7401220642" },
       { name: "NaveenKumar P", phone: "6374840438" }
     ],
-    registrationLink: ""
   },
   {
     id: "paper-presentation",
@@ -67,7 +66,6 @@ export const eventsData: EventData[] = [
       { name: "VenuAravind S", phone: "866747389"},
       { name: "Sanjay Lakshmanan", phone: "6374009179" }
     ],
-    registrationLink: ""
   },
   {
     id: "brain-sparks",
@@ -89,7 +87,6 @@ export const eventsData: EventData[] = [
       { name: "Syed Nayemudeen B ", phone: "9042818580" },
       { name: "Mohana Sundaram", phone: "9710109701" }
     ],
-    registrationLink: ""
   },
   {
     id: "component-meshing",
@@ -112,7 +109,6 @@ export const eventsData: EventData[] = [
       { name: "Aadhitya Narayanan KS", phone: "8754153904" },
       { name: "Sommer", phone: "8610306857" }
     ],
-    registrationLink: ""
   },
   {
     id: "retro-racers",
@@ -135,7 +131,6 @@ export const eventsData: EventData[] = [
       { name: "Hariharan A", phone: "9445338220" },
       { name: "Arun B", phone: "8122728338" }
     ],
-    registrationLink: ""
   },
 
   // --- NON-TECHNICAL EVENTS ---
@@ -160,7 +155,6 @@ export const eventsData: EventData[] = [
       { name: "Senthil Ramanan V", phone: "9080191348"},
       { name: "Rudhran S", phone: "9498324617" }
     ],
-    registrationLink: ""
   },
   {
     id: "frame-flux",
@@ -183,7 +177,6 @@ export const eventsData: EventData[] = [
       { name: "Sriram Kannan", phone: "7871759996" },
       { name: "Prajan", phone: "7824008565" }
     ],
-    registrationLink: ""
   },
   {
     id: "otaku-clash",
@@ -206,7 +199,6 @@ export const eventsData: EventData[] = [
       { name: "Riyaz R", phone: "8122770124" },
       { name: "Karthick P", phone: "7305298694" }
     ],
-    registrationLink: ""
   },
   {
     id: "rapid-rumble",
@@ -229,7 +221,6 @@ export const eventsData: EventData[] = [
       { name: "Abishek", phone: "9384668834" },
       { name: "Karthikayan K", phone: "8939058717" }
     ],
-    registrationLink: ""
   }
 ];
 
