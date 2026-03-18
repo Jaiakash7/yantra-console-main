@@ -44,7 +44,7 @@ const DesktopEventsContent = () => {
         <p className="text-sm text-foreground/70 mb-6 leading-relaxed">{selectedEvent.description}</p>
 
         <div className="grid grid-cols-2 gap-8">
-          {/* --- LEFT COLUMN (GUIDELINES & CONDITIONAL REGISTER BUTTON) --- */}
+          {/* --- LEFT COLUMN (GUIDELINES & CLOSED BUTTON) --- */}
           <div className="flex flex-col">
             <div>
               <span className="text-xs font-display tracking-[0.3em] text-muted-foreground block mb-3">GUIDELINES</span>
@@ -58,22 +58,15 @@ const DesktopEventsContent = () => {
               </div>
             </div>
             
-            {/* TECHNICAL EVENTS ONLY: Register Button (Left Column) */}
+            {/* TECHNICAL EVENTS: CLOSED BUTTON */}
             {selectedEvent.type === "technical" && (
-              <motion.a
-                href={selectedEvent.registrationLink || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="will-change-transform w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 flex items-center justify-center bg-primary text-black hover:bg-primary/90 shadow-[0_0_15px_rgba(255,215,0,0.2)]"
-              >
-                REGISTER NOW
-              </motion.a>
+              <div className="w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest mt-6 flex items-center justify-center bg-zinc-800 text-muted-foreground cursor-not-allowed opacity-60 border border-zinc-700">
+                REGISTRATION CLOSED
+              </div>
             )}
           </div>
 
-          {/* --- RIGHT COLUMN (PRIZES, CONTACTS & CONDITIONAL REGISTER BUTTON) --- */}
+          {/* --- RIGHT COLUMN (PRIZES, CONTACTS & CLOSED BUTTON) --- */}
           <div className="space-y-6 flex flex-col">
             {prizes && (
               <div>
@@ -109,18 +102,11 @@ const DesktopEventsContent = () => {
               ))}
             </div>
 
-            {/* NON-TECHNICAL EVENTS ONLY: Register Button (Right Column) */}
+            {/* NON-TECHNICAL EVENTS: CLOSED BUTTON */}
             {selectedEvent.type === "non-technical" && (
-              <motion.a
-                href={selectedEvent.registrationLink || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="will-change-transform w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest shadow-lg mt-6 flex items-center justify-center bg-orange-500 text-black hover:bg-orange-500/90 shadow-[0_0_15px_rgba(255,87,34,0.2)]"
-              >
-                REGISTER NOW
-              </motion.a>
+              <div className="w-full py-3.5 rounded-lg font-bold font-mono text-sm tracking-widest mt-6 flex items-center justify-center bg-zinc-800 text-muted-foreground cursor-not-allowed opacity-60 border border-zinc-700">
+                REGISTRATION CLOSED
+              </div>
             )}
           </div>
         </div>
