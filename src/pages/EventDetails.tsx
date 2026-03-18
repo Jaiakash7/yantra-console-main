@@ -117,7 +117,7 @@ const EventDetails = () => {
 
         {/* Registration CTA — mobile */}
         <div className="p-4 lg:hidden">
-          <RegistrationCTA link={event.registrationLink} />
+          <RegistrationCTA />
         </div>
       </div>
 
@@ -125,7 +125,7 @@ const EventDetails = () => {
       <div className="hidden lg:flex flex-col flex-1 overflow-y-auto scrollbar-hide p-6 space-y-6">
         {prizes && <PrizePodium prizes={prizes} />}
         <GuidelinesSection guidelines={event.guidelines} />
-        <RegistrationCTA link={event.registrationLink} />
+        <RegistrationCTA />
       </div>
 
       <div className="lg:hidden">
@@ -135,30 +135,17 @@ const EventDetails = () => {
   );
 };
 
-const RegistrationCTA = ({ link }: { link?: string }) => {
-  const textContent = "INITIALIZE REGISTRATION SEQUENCE";
+const RegistrationCTA = () => {
+  const textContent = "REGISTRATION CLOSED";
   return (
-    <motion.a
-      href={link || "#"}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="w-full py-4 bg-black border border-zinc-700 rounded-xl font-mono text-[11px] tracking-[0.2em] text-white font-bold flex items-center justify-center transition-all active:scale-[0.98]"
-      whileHover={{ boxShadow: "0 0 20px rgba(255,87,34,0.4)" }}
-      whileTap={{ scale: 0.98 }}
-      style={{ boxShadow: "0 0 15px rgba(180, 50, 0, 0.3)" }} // Persistent molten embers glow
+    <div
+      className="w-full py-4 bg-zinc-900/50 border border-zinc-800 rounded-xl font-mono text-[11px] tracking-[0.2em] text-muted-foreground font-bold flex items-center justify-center opacity-70 cursor-not-allowed"
     >
-      <span className="relative">
-        {/* Cyan Glitch Layer */}
-        <span className="absolute -left-[1px] -top-[1px] text-cyan-400 opacity-60 filter blur-[0.5px] whitespace-nowrap">{`>_ `}{textContent}</span>
-        {/* Red Glitch Layer */}
-        <span className="absolute left-[1px] top-[1px] text-red-500 opacity-60 filter blur-[0.5px] whitespace-nowrap">{`>_ `}{textContent}</span>
-        {/* Main White Text and Prompt */}
-        <span className="relative z-10 text-white flex items-center gap-2">
-          <span className="font-bold">{`>_`}</span>
-          {textContent}
-        </span>
+      <span className="relative flex items-center gap-2">
+        <span className="font-bold">{`>_`}</span>
+        {textContent}
       </span>
-    </motion.a>
+    </div>
   );
 };
 
